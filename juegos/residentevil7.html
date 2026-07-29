@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESIDENT EVI1L 7 PC ESPAÑOL v11.05.26 | NexusGames</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS (Ruta corregida para salir de la carpeta) -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+        /* Estilos específicos para esta página de juego */
+        .seccion-titulo {
+            color: #ff5722; 
+            text-transform: uppercase;
+            border-bottom: 2px solid #ff5722;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 25px;
+        }
+        .lista-cuadrada {
+            list-style-type: square;
+        }
+        .lista-cuadrada li, .lista-requisitos li {
+            margin-bottom: 10px;
+        }
+        .lista-instrucciones li {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg custom-navbar">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold fs-4 d-flex align-items-center" href="../index.html">
+                <i class="fa-solid fa-gamepad fa-lg me-2 text-warning"></i> 
+                NEXUSGAMES
+            </a>
+            <button class="navbar-toggler border-white text-white" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="menuNavegacion">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-uppercase fw-semibold" style="font-size: 0.85rem;">
+                    <li class="nav-item"><a class="nav-link text-white px-3" href="../index.html">Inicio</a></li>
+                    
+                    <!-- Menú Desplegable de Categorías -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorías
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark border-danger border-top border-3 mt-2 shadow-lg">
+                            <li><a class="dropdown-item link-hover" href="../accion.html"><i class="fa-solid fa-crosshairs me-2 text-muted"></i>Acción</a></li>
+                            <li><a class="dropdown-item link-hover" href="../aventura.html"><i class="fa-solid fa-map-location-dot me-2 text-muted"></i>Aventura</a></li>
+                            <li><a class="dropdown-item link-hover" href="../carreras.html"><i class="fa-solid fa-car-side me-2 text-muted"></i>Carreras</a></li>
+                            <li><a class="dropdown-item link-hover" href="../estrategia.html"><i class="fa-solid fa-chess-knight me-2 text-muted"></i>Estrategia</a></li>
+                            <li><a class="dropdown-item link-hover" href="../terror.html"><i class="fa-solid fa-ghost me-2 text-muted"></i>Terror</a></li>
+                            <li><hr class="dropdown-divider border-secondary"></li>
+                            <li><a class="dropdown-item text-primary fw-bold" href="../categorias.html">Ver todas las categorías...</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Menú Desplegable de Requisitos -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Requisitos
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark border-danger border-top border-3 mt-2 shadow-lg">
+                            <li><a class="dropdown-item link-hover" href="../bajos-requisitos.html"><i class="fa-solid fa-laptop me-2 text-success"></i>Bajos Requisitos</a></li>
+                            <li><a class="dropdown-item link-hover" href="../medios-requisitos.html"><i class="fa-solid fa-desktop me-2 text-warning"></i>Medios Requisitos</a></li>
+                            <li><a class="dropdown-item link-hover" href="../altos-requisitos.html"><i class="fa-solid fa-server me-2 text-danger"></i>Altos Requisitos</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item"><a class="nav-link text-white px-3" href="../ayuda.html">Ayuda</a></li>
+                </ul>
+
+                <!-- Iconos y Buscador -->
+                <div class="d-flex align-items-center gap-3 ms-lg-3 mt-3 mt-lg-0">
+                    <a href="#" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-telegram"></i></a>
+                    <form class="d-flex" role="search">
+                        <div class="input-group input-group-sm shadow-sm">
+                            <input class="form-control border-0" type="search" placeholder="Buscar juego..." aria-label="Buscar">
+                            <button class="btn btn-dark border-0 px-3" type="submit" style="background-color: #212529;">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO DEL JUEGO -->
+    <div class="container mt-4 mb-5">
+        
+        <!-- Migas de pan (Ruta corregida) -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb" style="font-size: 0.85rem;">
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-muted">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html?cat=accion" class="text-decoration-none text-muted">Acción</a></li>
+                <li class="breadcrumb-item active fw-bold text-dark" aria-current="page">The First Berserker: Khazan</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <!-- COLUMNA IZQUIERDA: Detalles del juego -->
+            <div class="col-lg-9 bg-white p-4 shadow-sm rounded-1 border">
+                
+                <h1 class="h3 fw-bold mb-4 text-uppercase text-center">The First Berserker: Khazan PC Español</h1>
+                
+                <!-- Imagen Principal (Con la clase CSS predefinida) -->
+                <img src="imagenes/Descargar-Resident-Evil-7-Gold-Edition-PC-Español.jpg" class="rounded-1 mb-4 shadow-sm portada-juego" alt="Portada del Juego">
+
+                <!-- Breve Descripción del Juego -->
+                <div class="px-2 mb-5">
+                    <p class="text-muted" style="font-size: 1.05rem; line-height: 1.7;">
+                        <strong>RESIDENT EVI1L 7 </strong> es la siguiente gran entrega de la renombrada serie Resident Evil y supone un nuevo hito para la franquicia, puesto que se aprovecha de sus raíces y abre la puerta a una experiencia de miedo realmente terrorífica. Con su gran cambio a la vista en primera persona y un estilo fotorrealista gracias al nuevo motor de Capcom RE Engine, Resident Evil 7 trae un nivel sin precedentes de inmersión que logra una experiencia de terror muy cercana y personal.
+                    </p>
+                </div>
+
+                <!-- FICHA TÉCNICA -->
+                <div class="text-center">
+                    <h3 class="seccion-titulo">Ficha Técnica</h3>
+                </div>
+                <ul class="lista-cuadrada fs-6 ms-3 mb-5">
+                    <li><strong>PLATAFORMA:</strong> PC</li>
+                    <li><strong>PESO TOTAL:</strong> 30 GB</li>
+                    <li><strong>FORMATO:</strong> ISO ELAMIGOS</li>
+                    <li><strong>FECHA DE ESTRENO:</strong> <span class="text-danger">23/01/17</span></li>
+                    <li><strong>FECHA DE ACTUALIZACIÓN:</strong> <span class="text-danger">14/05/26</span></li>
+                </ul>
+
+                <!-- GAMEPLAY TRAILER -->
+                <div class="text-center">
+                    <h3 class="seccion-titulo">Gameplay Trailer</h3>
+                </div>
+                <div class="ratio ratio-16x9 mb-5">
+                    <iframe src="https://www.youtube.com/embed/W1OUs3HwIuo?si=kXnFCjTk6N2cLjUE" title="YouTube video player" allowfullscreen></iframe>
+                </div>
+
+                <!-- REQUISITOS DEL SISTEMA -->
+                <div class="text-center">
+                    <h3 class="seccion-titulo">Requisitos del Sistema</h3>
+                </div>
+                <div class="mb-5">
+                    <p class="fs-5 mb-3">MÍNIMOS:</p>
+                    <ul class="lista-cuadrada lista-requisitos ms-3 mb-4">
+                        <li>Requiere un procesador y un sistema operativo de 64 bits</li>
+                        <li><strong>SO:</strong> WINDOWS® 7, 8, 8.1, 10 (64-BIT Required)</li>
+                        <li><strong>Procesador:</strong> Intel® Core™ i5-4460, 2.70GHz or AMD FX™-6300 or better</li>
+                        <li><strong>Memoria:</strong> 8 GB de RAM</li>
+                        <li><strong>Gráficos:</strong> NVIDIA® GeForce® GTX 760 or AMD Radeon™ R7 260x with 2GB Video RAM</li>
+                        <li><strong>DirectX:</strong> Versión 11</li>
+                        <li><strong>Almacenamiento:</strong> 24 GB de espacio disponible</li>
+                    </ul>
+
+                    <p class="fs-5 mb-3">RECOMENDADOS:</p>
+                    <ul class="lista-cuadrada lista-requisitos ms-3 mb-4">
+                        <li>Requiere un procesador y un sistema operativo de 64 bits</li>
+                        <li><strong>SO:</strong> WINDOWS® 7, 8, 8.1, 10 (64-BIT Required) </li>
+                        <li><strong>Procesador:</strong> Intel® Core™ i7 3770 3.4GHz or AMD equivalent or better</li>
+                        <li><strong>Memoria:</strong> 8 GB de RAM</li>
+                        <li><strong>Gráficos:</strong> NVIDIA® GeForce® GTX 1060 with 3GB VRAM</li>
+                        <li><strong>DirectX:</strong> Versión 11</li>
+                        <li><strong>Almacenamiento:</strong> 24 GB de espacio disponible</li>
+                    </ul>
+                </div>
+
+                <!-- INSTRUCCIONES -->
+                <div class="text-center">
+                    <h3 class="seccion-titulo">Instrucciones</h3>
+                </div>
+                <ol class="lista-instrucciones ms-3 mb-5">
+                    <li>Descargar el juego</li>
+                    <li>Descomprimir carpeta RAR</li>
+                    <li>Montar el archivo ISO</li>
+                    <li>Ejecutar el juego como administrador</li>
+                    <li>Jugar 🙂</li>
+                </ol>
+
+                <!-- BOTÓN DE DESCARGA (ÚNICO: UTORRENT) -->
+                <div class="text-center p-4 bg-light border rounded-1">
+                    <h4 class="fw-bold mb-4">DESCARGAR JUEGO</h4>
+                    <a href="https://shrinkme.click/rAjkc" class="btn btn-utorrent btn-lg fw-bold px-5 py-3">
+                        <i class="fa-solid fa-magnet me-2"></i> DESCARGAR POR UTORRENT
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- COLUMNA DERECHA: Banners -->
+            <div class="col-lg-3 mt-4 mt-lg-0">
+                <div class="bg-dark text-white text-center p-4 rounded-1 h-100 d-flex flex-column justify-content-center align-items-center">
+                    <p class="text-uppercase fw-bold text-muted mb-2">Espacio Publicitario</p>
+                    <h4 class="fw-bold">BANNER AQUI</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER CORREGIDO Y COMPACTO -->
+    <footer class="bg-dark text-white mt-5 border-top border-danger border-3 mi-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold mb-2 text-uppercase fs-6">
+                        <i class="fa-solid fa-gamepad text-warning me-2"></i>NEXUSGAMES
+                    </h5>
+                    <p class="text-light opacity-75 small mb-0">Tu directorio definitivo de videojuegos. Las mejores descargas por uTorrent, actualizaciones constantes y una comunidad en crecimiento.</p>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold mb-2 text-uppercase fs-6">Enlaces Útiles</h5>
+                    <ul class="list-unstyled text-light opacity-75 small mb-0">
+                        <li class="mb-1"><a href="../index.html" class="text-decoration-none text-light link-hover">Inicio</a></li>
+                        <li class="mb-1"><a href="#" class="text-decoration-none text-light link-hover">Pedir un juego</a></li>
+                        <li class="mb-1"><a href="#" class="text-decoration-none text-light link-hover">Cómo descargar (Tutorial)</a></li>
+                        <li><a href="#" class="text-decoration-none text-light link-hover">DMCA / Reclamaciones</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold mb-2 text-uppercase fs-6">Únete a la comunidad</h5>
+                    <div class="d-flex gap-3 mt-2">
+                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-youtube hover-rojo"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-discord hover-rojo"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-telegram hover-rojo"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="border-secondary mt-1 mb-2">
+            
+            <div class="text-center text-light opacity-75" style="font-size: 0.75rem;">
+                &copy; 2026 NexusGames. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
