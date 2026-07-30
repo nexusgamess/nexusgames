@@ -24,62 +24,78 @@
 </head>
 
 <!-- Script de Filtro Dinámico -->
-<!-- Script de Filtro Dinámico (Categorías, Requisitos y Búsqueda) -->
+<!-- Script Definitivo: Paginación y Filtros Dinámicos -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 1. Leemos la URL
+            // 1. Leemos la URL y los comandos
             const parametrosURL = new URLSearchParams(window.location.search);
             const categoriaFiltro = parametrosURL.get('cat');
             const requisitosFiltro = parametrosURL.get('req'); 
-            const busquedaFiltro = parametrosURL.get('buscar'); // Leemos si hay una búsqueda
+            const busquedaFiltro = parametrosURL.get('buscar');
             
-            // 2. Buscamos las tarjetas y el título
-            const tarjetas = document.querySelectorAll('.juego-tarjeta');
+            // --- CONFIGURACIÓN DE PAGINACIÓN ---
+            let paginaActual = parseInt(parametrosURL.get('pag')) || 1;
+            const juegosPorPagina = 6; // Aquí puedes cambiar la cantidad de juegos por ventana
+            
+            // 2. Buscamos todas las tarjetas y contenedores
+            const tarjetas = Array.from(document.querySelectorAll('.juego-tarjeta'));
             const tituloSeccion = document.getElementById('titulo-juegos');
+            const contenedorPaginacion = document.getElementById('paginacion');
 
-            // 3. Lógica para filtrar por BÚSQUEDA
+            let tarjetasFiltradas = tarjetas;
+
+            // 3. Aplicar Filtros (Búsqueda, Categorías o Requisitos)
             if (busquedaFiltro) {
                 const termino = busquedaFiltro.toLowerCase();
-                
-                if(tituloSeccion) {
-                    tituloSeccion.innerHTML = `<i class="fa-solid fa-magnifying-glass me-2"></i> RESULTADOS PARA: "${busquedaFiltro.toUpperCase()}"`;
-                }
-
-                tarjetas.forEach(tarjeta => {
-                    // Lee todo el texto de la tarjeta y busca coincidencias
-                    const textoTarjeta = tarjeta.textContent.toLowerCase();
-                    if (textoTarjeta.includes(termino)) {
-                        tarjeta.style.display = 'block';
-                    } else {
-                        tarjeta.style.display = 'none';
-                    }
-                });
+                if(tituloSeccion) tituloSeccion.innerHTML = `<i class="fa-solid fa-magnifying-glass me-2"></i> RESULTADOS PARA: "${busquedaFiltro.toUpperCase()}"`;
+                tarjetasFiltradas = tarjetas.filter(tarjeta => tarjeta.textContent.toLowerCase().includes(termino));
+            } else if (categoriaFiltro) {
+                if(tituloSeccion) tituloSeccion.innerHTML = `<i class="fa-regular fa-calendar-days me-2"></i> JUEGOS DE ${categoriaFiltro.toUpperCase()}`;
+                tarjetasFiltradas = tarjetas.filter(tarjeta => tarjeta.getAttribute('data-categoria') === categoriaFiltro);
+            } else if (requisitosFiltro) {
+                if(tituloSeccion) tituloSeccion.innerHTML = `<i class="fa-regular fa-calendar-days me-2"></i> JUEGOS DE ${requisitosFiltro.toUpperCase()} REQUISITOS`;
+                tarjetasFiltradas = tarjetas.filter(tarjeta => tarjeta.getAttribute('data-requisitos') === requisitosFiltro);
             }
-            // 4. Lógica para filtrar por CATEGORÍAS
-            else if (categoriaFiltro) {
-                if(tituloSeccion) {
-                    tituloSeccion.innerHTML = `<i class="fa-regular fa-calendar-days me-2"></i> JUEGOS DE ${categoriaFiltro.toUpperCase()}`;
-                }
-                tarjetas.forEach(tarjeta => {
-                    if (tarjeta.getAttribute('data-categoria') === categoriaFiltro) {
-                        tarjeta.style.display = 'block';
-                    } else {
-                        tarjeta.style.display = 'none';
+
+            // 4. Ocultar TODAS las tarjetas por defecto
+            tarjetas.forEach(tarjeta => tarjeta.style.display = 'none');
+
+            // 5. Lógica de Paginación Matemática
+            const totalPaginas = Math.ceil(tarjetasFiltradas.length / juegosPorPagina);
+            if (paginaActual > totalPaginas && totalPaginas > 0) paginaActual = totalPaginas;
+
+            const inicio = (paginaActual - 1) * juegosPorPagina;
+            const fin = inicio + juegosPorPagina;
+
+            // 6. Mostrar SOLO los 6 juegos de la página actual
+            tarjetasFiltradas.slice(inicio, fin).forEach(tarjeta => tarjeta.style.display = 'block');
+
+            // 7. Generar los botones (1, 2, 3...)
+            if (contenedorPaginacion) {
+                if (totalPaginas > 1) {
+                    let htmlPaginacion = '';
+                    
+                    // Mantiene el filtro en la URL al cambiar de página
+                    let urlBase = '?';
+                    if (categoriaFiltro) urlBase += `cat=${categoriaFiltro}&`;
+                    if (requisitosFiltro) urlBase += `req=${requisitosFiltro}&`;
+                    if (busquedaFiltro) urlBase += `buscar=${busquedaFiltro}&`;
+
+                    // Crea un botón por cada página necesaria
+                    for (let i = 1; i <= totalPaginas; i++) {
+                        if (i === paginaActual) {
+                            // Botón de la página en la que estás (Rojo y activo)
+                            htmlPaginacion += `<li class="page-item active"><a class="page-link bg-danger text-white border-danger" href="${urlBase}pag=${i}">${i}</a></li>`;
+                        } else {
+                            // Botones de las otras páginas
+                            htmlPaginacion += `<li class="page-item"><a class="page-link text-danger border-danger" href="${urlBase}pag=${i}">${i}</a></li>`;
+                        }
                     }
-                });
-            } 
-            // 5. Lógica para filtrar por REQUISITOS
-            else if (requisitosFiltro) {
-                if(tituloSeccion) {
-                    tituloSeccion.innerHTML = `<i class="fa-regular fa-calendar-days me-2"></i> JUEGOS DE ${requisitosFiltro.toUpperCase()} REQUISITOS`;
+                    contenedorPaginacion.innerHTML = htmlPaginacion;
+                } else {
+                    // Si hay 6 juegos o menos, borra los botones porque no son necesarios
+                    contenedorPaginacion.innerHTML = '';
                 }
-                tarjetas.forEach(tarjeta => {
-                    if (tarjeta.getAttribute('data-requisitos') === requisitosFiltro) {
-                        tarjeta.style.display = 'block';
-                    } else {
-                        tarjeta.style.display = 'none';
-                    }
-                });
             }
         });
     </script>
@@ -153,7 +169,7 @@
                                     <li><a class="dropdown-item d-flex align-items-center" href="index.html?req=altos"><i class="fa-solid fa-battery-full me-2 text-danger"></i> Altos Requisitos</a></li>
                                 </ul>
                             </li>
-                    <li class="nav-item"><a class="nav-link text-white px-3" href="index.html">Ayuda</a></li>
+                    <li class="nav-item"><a class="nav-link text-white px-3" href="ayuda.html">Ayuda</a></li>
                 </ul>
                 <!-- Iconos y Buscador -->
                                 <div class="d-flex align-items-center gap-3 ms-lg-3 mt-3 mt-lg-0">
@@ -187,6 +203,18 @@
             <div class="col-lg-9">
                 <div class="row g-4">
                     
+                    <!-- Tarjeta de Juego CONAN EXILES COMPLETE EDITION -->
+                    <div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion" data-requisitos="altos">
+                        <a href="juegos/conanexiles.html" class="text-decoration-none text-dark game-post">
+                            <div class="position-relative">
+                                <img src="juegos/imagenes/Conan-Exiles-Juego-para-PC-Pivigames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+                            </div>
+                            <h6 class="mt-2 mb-1 fw-bold text-uppercase">CONAN EXILES COMPLETE EDITION + Update v2.0.2</h6>
+                            <p class="text-muted" style="font-size: 0.75rem;">Acción, Altos Requisitos, Aventura, Supervivencia</p>
+                        </a>
+                    </div>
+
                     <!-- Tarjeta de Juego 1 -->
                     <div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion" data-requisitos="bajos">
                         <a href="juegos/khazan.html" class="text-decoration-none text-dark game-post">
@@ -299,18 +327,28 @@
 
                 </div>
             </div>
-
+            
             <!-- COLUMNA DERECHA: Banners o Anuncios -->
             <div class="col-lg-3 mt-4 mt-lg-0">
-                <div class="bg-dark text-white text-center p-4 rounded-1 h-100 d-flex flex-column justify-content-center align-items-center">
-                    <p class="text-uppercase fw-bold text-muted mb-2">Espacio Publicitario</p>
-                    <h4 class="fw-bold">BANNER</h4>
-                    <p class="small">Seguimos trabajando, esto es creado por NedFlow</p>
+                <div class="h-100 w-100">
+                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                        <source src="juegos/imagenes/banner-pirata.mp4" type="video/mp4">
+                        Tu navegador no soporta la etiqueta de video.
+                    </video>
                 </div>
             </div>
 
         </div>
     </div>
+
+        <!-- Contenedor de Paginación -->
+            <div class="container mt-5 mb-5">
+                <nav aria-label="Navegación de páginas">
+                    <ul class="pagination justify-content-center fw-bold" id="paginacion">
+                        <!-- El JavaScript creará los botones 1, 2, 3 aquí de forma automática -->
+                    </ul>
+                </nav>
+            </div>
 
 <!-- FOOTER CORREGIDO Y COMPACTO -->
     <footer class="bg-dark text-white mt-5 border-top border-danger border-3 mi-footer">

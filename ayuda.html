@@ -1,214 +1,252 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>NexusGames | Tu universo de videojuegos</title>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
-
-<body>
-
-<!DOCTYPE html>
-<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusGames | Descargas</title>
-
-    <!-- Bootstrap -->
+    <title>Centro de Ayuda | NexusGames</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Iconos (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="juegos/imagenes/IDENTIDAD.png">
+
+    <style>
+        /* DEFINIMOS TU ROJO NEXUS PERSONALIZADO */
+        :root {
+            --rojo-nexus: #D50000; /* Un rojo puro y vibrante */
+            --rojo-oscuro: #cc0000;
+        }
+
+        .bg-nexus { background-color: var(--rojo-nexus) !important; }
+        .text-nexus { color: var(--rojo-nexus) !important; }
+        .border-nexus { border-color: var(--rojo-nexus) !important; }
+        
+        .btn-nexus {
+            background-color: var(--rojo-nexus);
+            color: white;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-nexus:hover {
+            background-color: var(--rojo-oscuro);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-nexus {
+            border: 2px solid var(--rojo-nexus);
+            color: var(--rojo-nexus);
+            background: transparent;
+            transition: 0.3s;
+        }
+
+        .btn-outline-nexus:hover {
+            background-color: var(--rojo-nexus);
+            color: white;
+        }
+
+        .card-header-nexus {
+            background-color: var(--rojo-nexus);
+            color: white;
+        }
+
+        .badge-nexus {
+            background-color: var(--rojo-nexus);
+            color: white;
+        }
+
+        /* Ajuste para que los inputs se vean pro */
+        .form-control:focus {
+            border-color: var(--rojo-nexus);
+            box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25);
+        }
+    </style>
 </head>
 <body class="bg-light">
 
-    <!-- NAVBAR ROJO ESTILO PIVIGAMES -->
-    <nav class="navbar navbar-expand-lg custom-navbar">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-nexus shadow-sm">
         <div class="container">
-            <!-- Logo -->
-            <a class="navbar-brand text-white fw-bold fs-4 d-flex align-items-center" href="#">
-                <i class="fa-solid fa-gamepad fa-lg me-2 text-warning"></i> 
+            <a class="navbar-brand text-white fw-bold fs-4 d-flex align-items-center" href="index.html">
+                <img src="juegos/imagenes/IDENTIDAD.png" alt="Logo" style="height: 35px;" class="me-2">
                 NEXUSGAMES
             </a>
-            
-            <button class="navbar-toggler border-white text-white" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="menuNavegacion">
-                <!-- Enlaces centrales -->
-<ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-uppercase fw-semibold" style="font-size: 0.85rem;">
-                    <li class="nav-item"><a class="nav-link text-white px-3" href="index.html">Inicio</a></li>
-                    
-                    <!-- Menú Desplegable de Categorías -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-white px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Categorías
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark border-danger border-top border-3 mt-2 shadow-lg">
-                            <li><a class="dropdown-item link-hover" href="accion.html"><i class="fa-solid fa-crosshairs me-2 text-muted"></i>Acción</a></li>
-                            <li><a class="dropdown-item link-hover" href="aventura.html"><i class="fa-solid fa-map-location-dot me-2 text-muted"></i>Aventura</a></li>
-                            <li><a class="dropdown-item link-hover" href="carreras.html"><i class="fa-solid fa-car-side me-2 text-muted"></i>Carreras</a></li>
-                            <li><a class="dropdown-item link-hover" href="estrategia.html"><i class="fa-solid fa-chess-knight me-2 text-muted"></i>Estrategia</a></li>
-                            <li><a class="dropdown-item link-hover" href="terror.html"><i class="fa-solid fa-ghost me-2 text-muted"></i>Terror</a></li>
-                            <li><hr class="dropdown-divider border-secondary"></li>
-                            <!-- Enlace corregido para "Ver todas las categorías" -->
-                            <li><a class="dropdown-item text-primary fw-bold" href="categorias.html">Ver todas las categorías...</a></li>
-                        </ul>
-                    </li>
-                    
-                    <!-- Enlaces corregidos de Requisitos y Ayuda -->
-                    <li class="nav-item"><a class="nav-link text-white px-3" href="requisitos.html">Requisitos</a></li>
-                    <li class="nav-item"><a class="nav-link text-white px-3" href="ayuda.html">Ayuda</a></li>
+            <div class="collapse navbar-collapse" id="menuAyuda">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold">
+                    <li class="nav-item"><a class="nav-link text-white" href="index.html"><i class="fa-solid fa-house me-1"></i> Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white active border-bottom border-white" href="ayuda.html"><i class="fa-solid fa-circle-question me-1"></i> Ayuda</a></li>
                 </ul>
-                <!-- Iconos y Buscador -->
-                                <div class="d-flex align-items-center gap-3 ms-lg-3 mt-3 mt-lg-0">
-                                    <!-- Redes -->
-                                    <a href="#" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-youtube"></i></a>
-                                    <a href="#" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-telegram"></i></a>
-                                    <!-- Buscador -->
-                                    <form class="d-flex" role="search">
-                                        <div class="input-group input-group-sm shadow-sm">
-                                            <input class="form-control border-0" type="search" placeholder="Buscar juego..." aria-label="Buscar">
-                                            <button class="btn btn-dark border-0 px-3" type="submit" style="background-color: #212529;">
-                                                <i class="fa-solid fa-magnifying-glass"></i>
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
             </div>
         </div>
     </nav>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="container mt-4 mb-5">
-        
-        <!-- Título de Sección -->
-        <div class="d-flex align-items-center mb-3">
-            <h5 class="m-0 text-primary fw-bold text-uppercase" style="letter-spacing: 0.5px;">
-                <i class="fa-regular fa-calendar-days me-2"></i> Últimas Publicaciones
-            </h5>
+    <div class="bg-dark text-white py-4 mb-4 border-bottom border-nexus border-4">
+        <div class="container text-center">
+            <h1 class="fw-bold"><i class="fa-solid fa-headset text-nexus me-2"></i> CENTRO DE AYUDA Y SOPORTE</h1>
+            <p class="text-muted mb-0">¿Tienes problemas con la instalación o algún error? ¡Comenta abajo!</p>
         </div>
+    </div>
 
-        <div class="row">
-            <!-- COLUMNA IZQUIERDA: Cuadrícula de Juegos -->
-            <div class="col-lg-9">
-                <div class="row g-4">
-                    
-                    <!-- Tarjeta de Juego 1 -->
-                    <div class="col-md-4 col-sm-6">
-                        <a href="juego.html" class="text-decoration-none text-dark game-post">
-                            <div class="position-relative">
-                                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=400&auto=format&fit=crop" class="img-fluid rounded-1 w-100" alt="Juego">
-                                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
-                            </div>
-                            <h6 class="mt-2 mb-1 fw-bold text-uppercase">Nombre de tu Juego 1 [PC Español]</h6>
-                            <p class="text-muted" style="font-size: 0.75rem;">Acción, Mundo Abierto, RPG</p>
-                        </a>
+    <div class="container mb-5">
+        <div class="row g-4">
+            
+            <div class="col-lg-5">
+                <div class="card shadow-sm border-0 rounded-3">
+                    <div class="card-header card-header-nexus fw-bold text-center py-3">
+                        <i class="fa-solid fa-pen-to-square me-2"></i> PUBLICAR UNA CONSULTA
                     </div>
-
-                    <!-- Tarjeta de Juego 2 -->
-                    <div class="col-md-4 col-sm-6">
-                        <a href="#" class="text-decoration-none text-dark game-post">
-                            <div>
-                                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=400&auto=format&fit=crop" class="img-fluid rounded-1 w-100" alt="Juego">
+                    <div class="card-body p-4">
+                        <form id="formComentario">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-dark">Tu Nombre o Apodo:</label>
+                                <input type="text" id="nombreUsuario" class="form-control border-nexus" placeholder="Ej. NedFlow" required>
                             </div>
-                            <h6 class="mt-2 mb-1 fw-bold text-uppercase">Otro Gran Título v2.0 + Crack</h6>
-                            <p class="text-muted" style="font-size: 0.75rem;">Estrategia, Supervivencia</p>
-                        </a>
-                    </div>
 
-                    <!-- Tarjeta de Juego 3 -->
-                    <div class="col-md-4 col-sm-6">
-                        <a href="#" class="text-decoration-none text-dark game-post">
-                            <div>
-                                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=400&auto=format&fit=crop" class="img-fluid rounded-1 w-100" alt="Juego">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-dark">¿Con qué juego necesitas ayuda?</label>
+                                <select id="juegoSeleccionado" class="form-select border-nexus" required>
+                                    <option value="" selected disabled>Selecciona un juego...</option>
+                                    <option value="Consulta General">Consulta General / Otro</option>
+                                    <option value="Conan Exiles">Conan Exiles</option>
+                                    <option value="Khazan">The First Berserker: Khazan</option>
+                                    <option value="Palworld">Palworld</option>
+                                    <option value="Phasmophobia">Phasmophobia</option>
+                                    <option value="GTA V">Grand Theft Auto V</option>
+                                </select>
                             </div>
-                            <h6 class="mt-2 mb-1 fw-bold text-uppercase">Juego de Carreras Extremo</h6>
-                            <p class="text-muted" style="font-size: 0.75rem;">Deportes, Carreras, Multiplayer</p>
-                        </a>
-                    </div>
-                    
-                    <!-- Aquí agregarías más juegos siguiendo el mismo bloque de "Tarjeta de Juego" -->
 
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-dark">Tu problema o duda:</label>
+                                <textarea id="mensajeComentario" class="form-control border-nexus" rows="4" placeholder="Explica detalladamente qué ayuda necesitas..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-nexus w-100 fw-bold py-2 shadow-sm uppercase">
+                                <i class="fa-solid fa-paper-plane me-2"></i> ENVIAR COMENTARIO
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
 
-            <!-- COLUMNA DERECHA: Banners o Anuncios -->
-            <div class="col-lg-3 mt-4 mt-lg-0">
-                <div class="bg-dark text-white text-center p-4 rounded-1 h-100 d-flex flex-column justify-content-center align-items-center">
-                    <p class="text-uppercase fw-bold text-muted mb-2">Espacio Publicitario</p>
-                    <h4 class="fw-bold">BANNER AQUI</h4>
-                    <p class="small">O puedes poner tus redes sociales, servidor de Discord, etc.</p>
+            <div class="col-lg-7">
+                <div class="card shadow-sm border-0 rounded-3">
+                    <div class="card-header bg-dark text-white fw-bold d-flex justify-content-between align-items-center">
+                        <span><i class="fa-solid fa-comments text-nexus me-2"></i> COMENTARIOS RECIENTES</span>
+                        <span class="badge badge-nexus" id="contadorComentarios">0 Comentarios</span>
+                    </div>
+                    <div class="card-body p-4 bg-light" id="listaComentarios" style="max-height: 600px; overflow-y: auto;">
+                        </div>
                 </div>
             </div>
 
         </div>
     </div>
 
-<!-- FOOTER CORREGIDO Y COMPACTO -->
-    <footer class="bg-dark text-white mt-5 border-top border-danger border-3 mi-footer">
-        <div class="container">
-            <div class="row">
-                <!-- Columna 1: Info -->
-                <div class="col-md-4 mb-3">
-                    <h5 class="fw-bold mb-2 text-uppercase fs-6">
-                        <i class="fa-solid fa-gamepad text-warning me-2"></i>NEXUSGAMES
-                    </h5>
-                    <p class="text-light opacity-75 small mb-0">Tu directorio definitivo de videojuegos. Las mejores descargas por uTorrent, actualizaciones constantes y una comunidad en crecimiento.</p>
-                </div>
-                
-                <!-- Columna 2: Enlaces -->
-                <div class="col-md-4 mb-3">
-                    <h5 class="fw-bold mb-2 text-uppercase fs-6">Enlaces Útiles</h5>
-                    <ul class="list-unstyled text-light opacity-75 small mb-0">
-                        <li class="mb-1"><a href="#" class="text-decoration-none text-light link-hover">Inicio</a></li>
-                        <li class="mb-1"><a href="#" class="text-decoration-none text-light link-hover">Pedir un juego</a></li>
-                        <li class="mb-1"><a href="#" class="text-decoration-none text-light link-hover">Cómo descargar (Tutorial)</a></li>
-                        <li><a href="#" class="text-decoration-none text-light link-hover">DMCA / Reclamaciones</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Columna 3: Redes -->
-                <div class="col-md-4 mb-3">
-                    <h5 class="fw-bold mb-2 text-uppercase fs-6">Únete a la comunidad</h5>
-                    <div class="d-flex gap-3 mt-2">
-                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-youtube hover-rojo"></i></a>
-                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-discord hover-rojo"></i></a>
-                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-telegram hover-rojo"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <hr class="border-secondary mt-1 mb-2">
-            
-            <div class="text-center text-light opacity-75" style="font-size: 0.75rem;">
-                &copy; 2026 NexusGames. Todos los derechos reservados.
-            </div>
-        </div>
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <p class="mb-0 text-muted small">&copy; 2026 NexusGames. Todos los derechos reservados.</p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const formComentario = document.getElementById('formComentario');
+            const listaComentarios = document.getElementById('listaComentarios');
+            const contadorComentarios = document.getElementById('contadorComentarios');
+
+            let comentarios = JSON.parse(localStorage.getItem('nexus_comentarios')) || [];
+
+            function guardarComentarios() {
+                localStorage.setItem('nexus_comentarios', JSON.stringify(comentarios));
+            }
+
+            function renderizarComentarios() {
+                listaComentarios.innerHTML = "";
+                let total = comentarios.length;
+                comentarios.forEach(c => total += c.respuestas.length);
+                contadorComentarios.textContent = `${total} Comentarios`;
+
+                comentarios.forEach((com) => {
+                    let respuestasHTML = "";
+                    com.respuestas.forEach((resp) => {
+                        respuestasHTML += `
+                            <div class="bg-white p-3 rounded-3 mt-2 border-start border-nexus border-3 shadow-sm">
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-bold text-nexus" style="font-size: 0.9rem;"><i class="fa-solid fa-reply me-1"></i> ${resp.nombre}</span>
+                                    <small class="text-muted" style="font-size: 0.7rem;">${resp.fecha}</small>
+                                </div>
+                                <p class="mb-0 text-dark small">${resp.mensaje}</p>
+                            </div>
+                        `;
+                    });
+
+                    const tarjetaHTML = `
+                        <div class="card mb-3 border-0 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <h6 class="fw-bold text-dark mb-1"><i class="fa-solid fa-circle-user text-muted me-1"></i> ${com.nombre}</h6>
+                                    <small class="text-muted" style="font-size: 0.7rem;">${com.fecha}</small>
+                                </div>
+                                <span class="badge badge-nexus mb-2" style="font-size: 0.7rem;">${com.juego}</span>
+                                <p class="card-text text-dark mb-2" style="font-size: 0.95rem;">${com.mensaje}</p>
+                                
+                                <div class="text-end">
+                                    <button class="btn btn-sm btn-outline-nexus" onclick="toggleFormRespuesta(${com.id})">Responder</button>
+                                </div>
+
+                                <div class="respuestas-contenedor">
+                                    ${respuestasHTML}
+                                </div>
+
+                                <div id="form-resp-${com.id}" class="d-none mt-3 p-3 bg-white border rounded">
+                                    <input type="text" id="nombre-resp-${com.id}" class="form-control form-control-sm mb-2" placeholder="Tu Nombre">
+                                    <textarea id="msg-resp-${com.id}" class="form-control form-control-sm mb-2" rows="2" placeholder="Tu respuesta..."></textarea>
+                                    <div class="text-end">
+                                        <button class="btn btn-sm btn-nexus" onclick="agregarRespuesta(${com.id})">Enviar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    listaComentarios.innerHTML += tarjetaHTML;
+                });
+            }
+
+            formComentario.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const nuevoComentario = {
+                    id: Date.now(),
+                    nombre: document.getElementById('nombreUsuario').value,
+                    juego: document.getElementById('juegoSeleccionado').value,
+                    mensaje: document.getElementById('mensajeComentario').value,
+                    fecha: new Date().toLocaleString(),
+                    respuestas: []
+                };
+                comentarios.unshift(nuevoComentario);
+                guardarComentarios();
+                renderizarComentarios();
+                formComentario.reset();
+            });
+
+            window.toggleFormRespuesta = function(id) {
+                document.getElementById(`form-resp-${id}`).classList.toggle('d-none');
+            };
+
+            window.agregarRespuesta = function(id) {
+                const nombre = document.getElementById(`nombre-resp-${id}`).value;
+                const mensaje = document.getElementById(`msg-resp-${id}`).value;
+                if(!nombre || !mensaje) return alert("Completa los campos");
+
+                const com = comentarios.find(c => c.id === id);
+                com.respuestas.push({
+                    nombre: nombre,
+                    mensaje: mensaje,
+                    fecha: new Date().toLocaleString()
+                });
+                guardarComentarios();
+                renderizarComentarios();
+            };
+
+            renderizarComentarios();
+        });
+    </script>
+
 </body>
-</html>
-
-
-</body>
-
 </html>
