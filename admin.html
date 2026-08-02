@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Control CMS | NexusGames</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-dark text-white py-4">
+
+    <div class="container" style="max-width: 900px;">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-danger fw-bold m-0"><i class="fa-solid fa-gamepad me-2"></i>NEXUSGAMES CMS</h2>
+            <a href="/index.html" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-globe me-1"></i> Ver Sitio Web</a>
+        </div>
+
+        <div id="alertaExito" class="alert alert-success d-none shadow-sm" role="alert"></div>
+
+        <ul class="nav nav-tabs border-danger mb-4" id="cmsTabs" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active bg-dark text-white border-danger fw-bold" id="tab-crear" data-bs-toggle="tab" data-bs-target="#panel-crear" type="button"><i class="fa-solid fa-plus me-2 text-danger"></i>Subir Juego</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link bg-dark text-white border-secondary fw-bold" id="tab-gestionar" data-bs-toggle="tab" data-bs-target="#panel-gestionar" type="button" onclick="cargarListaJuegos()"><i class="fa-solid fa-list-check me-2 text-warning"></i>Gestionar y Editar Juegos</button>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            
+            <div class="tab-pane fade show active" id="panel-crear" role="tabpanel">
+                <div class="card text-dark shadow-lg border-danger border-3">
+                    <div class="card-body p-4">
+                        <form action="/api/crear" method="POST" enctype="multipart/form-data">
+                            
+                            <h5 class="fw-bold border-bottom border-danger pb-2 mb-3 text-danger">1. Datos Principales</h5>
+                            <div class="mb-3">
+                                <label class="fw-bold small">Título del Juego</label>
+                                <input type="text" name="titulo" class="form-control" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="fw-bold small">Categoría</label>
+                                    <input type="text" name="categoria" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="fw-bold small">Nivel de Requisitos</label>
+                                    <select name="requisitos" class="form-select" required>
+                                        <option value="Bajos">Bajos</option>
+                                        <option value="Medios">Medios</option>
+                                        <option value="Altos">Altos</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold small">Subir Portada (Imagen)</label>
+                                <input type="file" name="imagen" class="form-control border-danger" accept="image/*" required>
+                            </div>
+
+                            <h5 class="fw-bold border-bottom border-danger pb-2 mb-3 mt-4 text-danger">2. Ficha Técnica y Multimedia</h5>
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label class="fw-bold small">Peso del Juego</label>
+                                    <input type="text" name="peso" class="form-control" placeholder="Ej: 40 GB" required>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="fw-bold small">Formato</label>
+                                    <input type="text" name="formato" class="form-control" value="ISO ELAMIGOS" required>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="fw-bold small">Plataforma</label>
+                                    <input type="text" name="plataforma" class="form-control" value="PC" required>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="fw-bold small">Fecha Actualización</label>
+                                    <input type="text" name="fecha_actualizacion" class="form-control" placeholder="Ej: 25/07/26" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="fw-bold small">Textos (Opcional)</label>
+                                    <input type="text" name="textos" class="form-control" placeholder="Ej: Español, Inglés...">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="fw-bold small">Audio (Opcional)</label>
+                                    <input type="text" name="audio" class="form-control" placeholder="Ej: Inglés, Japonés...">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold small">ID del Video YouTube</label>
+                                <input type="text" name="video" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="fw-bold small">Breve Descripción</label>
+                                <textarea name="descripcion" class="form-control" rows="2" required></textarea>
+                            </div>
+                            
+                            <div class="p-3 bg-light rounded border mb-3">
+                                <label class="fw-bold small text-dark">Link de Descarga del Juego (uTorrent)</label>
+                                <input type="url" name="link" class="form-control mb-2" placeholder="https://...">
+                                <div class="form-check form-switch mt-2">
+                                    <input class="form-check-input" type="checkbox" name="link_caido" value="true" id="checkCaidoCrear">
+                                    <label class="form-check-label fw-bold text-danger small" for="checkCaidoCrear">
+                                        <i class="fa-solid fa-triangle-exclamation"></i> Marcar enlace como CAÍDO / EN MANTENIMIENTO
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="fw-bold small">Instrucciones de Instalación (Juego Base)</label>
+                                <textarea name="instrucciones" class="form-control" rows="3" required></textarea>
+                            </div>
+
+                            <h5 class="fw-bold border-bottom border-danger pb-2 mb-3 mt-4 text-danger">3. Requisitos del Sistema</h5>
+                            
+                            <p class="mb-2 fw-bold text-muted small">MÍNIMOS:</p>
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-4"><input type="text" name="min_so" class="form-control" placeholder="SO Mínimo" required></div>
+                                <div class="col-md-4"><input type="text" name="min_cpu" class="form-control" placeholder="CPU Mínimo" required></div>
+                                <div class="col-md-4"><input type="text" name="min_ram" class="form-control" placeholder="RAM Mínima" required></div>
+                                <div class="col-md-4"><input type="text" name="min_gpu" class="form-control" placeholder="Gráfica Mínima" required></div>
+                                <div class="col-md-4"><input type="text" name="min_dx" class="form-control" placeholder="DirectX Mínimo" required></div>
+                                <div class="col-md-4"><input type="text" name="min_disco" class="form-control" placeholder="Disco Mínimo" required></div>
+                            </div>
+
+                            <p class="mb-2 fw-bold text-muted small mt-4">RECOMENDADOS:</p>
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-4"><input type="text" name="rec_so" class="form-control" placeholder="SO Recomendado" required></div>
+                                <div class="col-md-4"><input type="text" name="rec_cpu" class="form-control" placeholder="CPU Recomendado" required></div>
+                                <div class="col-md-4"><input type="text" name="rec_ram" class="form-control" placeholder="RAM Recomendada" required></div>
+                                <div class="col-md-4"><input type="text" name="rec_gpu" class="form-control" placeholder="Gráfica Recomendada" required></div>
+                                <div class="col-md-4"><input type="text" name="rec_dx" class="form-control" placeholder="DirectX Recomendado" required></div>
+                                <div class="col-md-4"><input type="text" name="rec_disco" class="form-control" placeholder="Disco Recomendado" required></div>
+                            </div>
+
+                            <h5 class="fw-bold border-bottom border-danger pb-2 mb-3 mt-4 text-danger">4. Updates (Opcional)</h5>
+                            <div class="mb-3">
+                                <label class="fw-bold small">Instrucciones del Update</label>
+                                <textarea name="instrucciones_update" class="form-control" rows="2"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label class="fw-bold small">Link de Descarga del UPDATE</label>
+                                <input type="url" name="link_update" class="form-control">
+                            </div>
+
+                            <button type="submit" class="btn btn-danger w-100 fw-bold py-3 fs-5 shadow">🚀 PUBLICAR JUEGO</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="panel-gestionar" role="tabpanel">
+                <div class="card text-dark shadow-lg">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold mb-3 text-danger border-bottom pb-2">Juegos en la Plataforma</h5>
+                        <div id="contenedorListaJuegos" class="row g-3"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade text-dark" id="modalEditarJuego" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title fw-bold">✏️ Editar Propiedades del Juego</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/api/editar" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="id_juego" id="edit_id_juego">
+                        
+                        <div class="mb-3">
+                            <label class="fw-bold small">Título del Juego</label>
+                            <input type="text" name="titulo" id="edit_titulo" class="form-control" required>
+                        </div>
+                        
+                        <div class="p-3 bg-light rounded border mb-3">
+                            <label class="fw-bold small text-dark">Link de Descarga del Juego (uTorrent)</label>
+                            <input type="url" name="link" id="edit_link" class="form-control mb-2">
+                            <div class="form-check form-switch mt-2">
+                                <input class="form-check-input" type="checkbox" name="link_caido" value="true" id="edit_link_caido">
+                                <label class="form-check-label fw-bold text-danger small" for="edit_link_caido">
+                                    <i class="fa-solid fa-triangle-exclamation"></i> MARCAR ESTE LINK COMO "EN MANTENIMIENTO"
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold small">Categoría</label>
+                                <input type="text" name="categoria" id="edit_categoria" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold small">Nivel Requisitos</label>
+                                <select name="requisitos" id="edit_requisitos" class="form-select" required>
+                                    <option value="Bajos">Bajos</option>
+                                    <option value="Medios">Medios</option>
+                                    <option value="Altos">Altos</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-bold small">Cambiar Portada (Opcional)</label>
+                            <input type="file" name="imagen" class="form-control" accept="image/*">
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label class="fw-bold small">Peso</label>
+                                <input type="text" name="peso" id="edit_peso" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="fw-bold small">Formato</label>
+                                <input type="text" name="formato" id="edit_formato" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="fw-bold small">Plataforma</label>
+                                <input type="text" name="plataforma" id="edit_plataforma" class="form-control" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="fw-bold small">Fecha Actualización</label>
+                                <input type="text" name="fecha_actualizacion" id="edit_fecha_actualizacion" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold small">Textos</label>
+                                <input type="text" name="textos" id="edit_textos" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold small">Audio</label>
+                                <input type="text" name="audio" id="edit_audio" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-bold small">ID Video YouTube</label>
+                            <input type="text" name="video" id="edit_video" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-bold small">Descripción</label>
+                            <textarea name="descripcion" id="edit_descripcion" class="form-control" rows="2" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-bold small">Instrucciones Juego Base</label>
+                            <textarea name="instrucciones" id="edit_instrucciones" class="form-control" rows="3" required></textarea>
+                        </div>
+
+                        <p class="mb-2 fw-bold text-muted small mt-4">MÍNIMOS:</p>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-4"><input type="text" name="min_so" id="edit_min_so" class="form-control" placeholder="SO Mínimo"></div>
+                            <div class="col-md-4"><input type="text" name="min_cpu" id="edit_min_cpu" class="form-control" placeholder="CPU Mínimo"></div>
+                            <div class="col-md-4"><input type="text" name="min_ram" id="edit_min_ram" class="form-control" placeholder="RAM Mínima"></div>
+                            <div class="col-md-4"><input type="text" name="min_gpu" id="edit_min_gpu" class="form-control" placeholder="Gráfica Mínima"></div>
+                            <div class="col-md-4"><input type="text" name="min_dx" id="edit_min_dx" class="form-control" placeholder="DirectX Mínimo"></div>
+                            <div class="col-md-4"><input type="text" name="min_disco" id="edit_min_disco" class="form-control" placeholder="Disco Mínimo"></div>
+                        </div>
+
+                        <p class="mb-2 fw-bold text-muted small mt-4">RECOMENDADOS:</p>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-4"><input type="text" name="rec_so" id="edit_rec_so" class="form-control" placeholder="SO Recomendado"></div>
+                            <div class="col-md-4"><input type="text" name="rec_cpu" id="edit_rec_cpu" class="form-control" placeholder="CPU Recomendado"></div>
+                            <div class="col-md-4"><input type="text" name="rec_ram" id="edit_rec_ram" class="form-control" placeholder="RAM Recomendada"></div>
+                            <div class="col-md-4"><input type="text" name="rec_gpu" id="edit_rec_gpu" class="form-control" placeholder="Gráfica Recomendada"></div>
+                            <div class="col-md-4"><input type="text" name="rec_dx" id="edit_rec_dx" class="form-control" placeholder="DirectX Recomendado"></div>
+                            <div class="col-md-4"><input type="text" name="rec_disco" id="edit_rec_disco" class="form-control" placeholder="Disco Recomendado"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-bold small">Instrucciones Update (opcional)</label>
+                            <textarea name="instrucciones_update" id="edit_instrucciones_update" class="form-control" rows="2"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-bold small">Link Update (opcional)</label>
+                            <input type="url" name="link_update" id="edit_link_update" class="form-control">
+                        </div>
+
+                        <button type="submit" class="btn btn-warning w-100 fw-bold py-2 fs-5 text-dark">💾 ACTUALIZAR DATOS Y ENLACES</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const modalEditar = new bootstrap.Modal(document.getElementById('modalEditarJuego'));
+
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('msg')) {
+            const alerta = document.getElementById('alertaExito');
+            alerta.classList.remove('d-none');
+            alerta.innerText = params.get('msg') === 'creado' ? '¡Juego publicado!' : '¡Datos actualizados correctamente!';
+            setTimeout(() => alerta.classList.add('d-none'), 3000);
+        }
+
+        function cargarListaJuegos() {
+            fetch('/api/juegos')
+                .then(res => res.json())
+                .then(juegos => {
+                    const contenedor = document.getElementById('contenedorListaJuegos');
+                    contenedor.innerHTML = juegos.map(juego => `
+                        <div class="col-md-6">
+                            <div class="card h-100 border shadow-sm">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-4">
+                                        <img src="juegos/imagenes/${juego.imagen}" class="img-fluid rounded-start p-2" style="max-height: 110px; object-fit: cover; width:100%;">
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card-body p-2">
+                                            <h6 class="card-title fw-bold text-uppercase m-0">${juego.titulo}</h6>
+                                            <p class="m-0 mb-2">${juego.link_caido === 'true' || juego.link_caido === true ? '<span class="badge bg-danger"><i class="fa-solid fa-wrench"></i> En Mantenimiento</span>' : '<span class="badge bg-success">✅ Enlace Activo</span>'}</p>
+                                            <button class="btn btn-sm btn-warning fw-bold text-dark" onclick="abrirEdicion('${juego.id}')"><i class="fa-solid fa-pen"></i> Editar / Cambiar Estado</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                });
+        }
+
+        function abrirEdicion(id) {
+            fetch('/api/juegos/' + id)
+                .then(res => res.json())
+                .then(j => {
+                    document.getElementById('edit_id_juego').value = j.id;
+                    document.getElementById('edit_titulo').value = j.titulo;
+                    document.getElementById('edit_categoria').value = j.categoria;
+                    document.getElementById('edit_requisitos').value = j.requisitos;
+                    
+                    document.getElementById('edit_peso').value = j.peso;
+                    document.getElementById('edit_formato').value = j.formato || 'ISO ELAMIGOS';
+                    document.getElementById('edit_plataforma').value = j.plataforma || 'PC';
+                    document.getElementById('edit_fecha_actualizacion').value = j.fecha_actualizacion || j.fecha || '';
+                    document.getElementById('edit_textos').value = j.textos || '';
+                    document.getElementById('edit_audio').value = j.audio || '';
+
+                    document.getElementById('edit_video').value = j.video;
+                    document.getElementById('edit_descripcion').value = j.descripcion;
+                    document.getElementById('edit_link').value = j.link;
+                    document.getElementById('edit_instrucciones').value = j.instrucciones || '';
+
+                    document.getElementById('edit_link_caido').checked = (j.link_caido === 'true' || j.link_caido === true);
+
+                    document.getElementById('edit_min_so').value = j.min_so || '';
+                    document.getElementById('edit_min_cpu').value = j.min_cpu || '';
+                    document.getElementById('edit_min_ram').value = j.min_ram || '';
+                    document.getElementById('edit_min_gpu').value = j.min_gpu || '';
+                    document.getElementById('edit_min_dx').value = j.min_dx || '';
+                    document.getElementById('edit_min_disco').value = j.min_disco || '';
+
+                    document.getElementById('edit_rec_so').value = j.rec_so || '';
+                    document.getElementById('edit_rec_cpu').value = j.rec_cpu || '';
+                    document.getElementById('edit_rec_ram').value = j.rec_ram || '';
+                    document.getElementById('edit_rec_gpu').value = j.rec_gpu || '';
+                    document.getElementById('edit_rec_dx').value = j.rec_dx || '';
+                    document.getElementById('edit_rec_disco').value = j.rec_disco || '';
+
+                    document.getElementById('edit_instrucciones_update').value = j.instrucciones_update || '';
+                    document.getElementById('edit_link_update').value = j.link_update || '';
+
+                    modalEditar.show();
+                });
+        }
+    </script>
+</body>
+</html>
