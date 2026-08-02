@@ -2,7 +2,11 @@
   {
     "id": "conanexiles",
     "titulo": "CONAN EXILES COMPLETE EDITION + UPDATE V2.0.2",
-    "categoria": "Acción",
+    "categoria": [
+      "Acción",
+      "Supervivencia",
+      "Mundo Abierto"
+    ],
     "requisitos": "Altos",
     "imagen": "Conan-Exiles-Juego-para-PC-Pivigames.jpg",
     "peso": "60 GB",
@@ -31,12 +35,19 @@
     "plataforma": "PC",
     "fecha_actualizacion": "29/07/26",
     "textos": "",
-    "audio": ""
+    "audio": "",
+    "categorias": [
+      "Acción",
+      "Supervivencia",
+      "Mundo Abierto"
+    ]
   },
   {
     "id": "forzahorizon6",
     "titulo": "FORZA HORIZON 6 PC ESPAÑOL",
-    "categoria": "Carreras",
+    "categoria": [
+      "Carreras"
+    ],
     "requisitos": "Altos",
     "imagen": "Forza-Horizon-6-Pivigames-1.jpg",
     "peso": "90 GB",
@@ -60,12 +71,22 @@
     "rec_disco": "167 GB de espacio disponible",
     "instrucciones_update": "",
     "link_update": "",
-    "link_caido": false
+    "link_caido": false,
+    "categorias": [
+      "Carreras"
+    ],
+    "formato": "ISO ELAMIGOS",
+    "plataforma": "PC",
+    "fecha_actualizacion": "31/07/26",
+    "textos": "",
+    "audio": ""
   },
   {
     "id": "gtav",
     "titulo": "GRAND THEFT AUTO V ENHANCED PC ESPAÑOL",
-    "categoria": "Acción",
+    "categoria": [
+      "Acción"
+    ],
     "requisitos": "Bajos",
     "imagen": "GTA-5-Pivigames.jpg",
     "peso": "110 GB",
@@ -89,12 +110,22 @@
     "rec_disco": "120 GB de espacio disponible",
     "instrucciones_update": "",
     "link_update": "",
-    "link_caido": false
+    "link_caido": false,
+    "categorias": [
+      "Acción"
+    ],
+    "formato": "ISO ELAMIGOS",
+    "plataforma": "PC",
+    "fecha_actualizacion": "31/07/26",
+    "textos": "",
+    "audio": ""
   },
   {
     "id": "halo",
     "titulo": "HALO COMBAT EVOLVED PC ESPAÑOL",
-    "categoria": "Acción",
+    "categoria": [
+      "Acción"
+    ],
     "requisitos": "Bajos",
     "imagen": "HALO-Compaign-Evolved-Juego-para-PC.jpg",
     "peso": "65 GB",
@@ -123,12 +154,17 @@
     "rec_disco": "",
     "instrucciones_update": "",
     "link_update": "",
-    "link_caido": false
+    "link_caido": false,
+    "categorias": [
+      "Acción"
+    ]
   },
   {
     "id": "khazan",
     "titulo": "THE FIRST BERSERKER KHAZAN PC ESPAÑOL",
-    "categoria": "Acción",
+    "categoria": [
+      "Acción"
+    ],
     "requisitos": "Medios",
     "imagen": "the-first-berserker-khazan-pc-game-steam-europe-and-us-and-canada-cover.jpg",
     "peso": "19.34 GB",
@@ -157,12 +193,17 @@
     "rec_disco": "70 GB de espacio disponible",
     "instrucciones_update": "",
     "link_update": "",
-    "link_caido": false
+    "link_caido": false,
+    "categorias": [
+      "Acción"
+    ]
   },
   {
     "id": "mecchachameleon",
     "titulo": "MECCA CHAMELEON JUEGO GRATIS PARA PC",
-    "categoria": "Estrategia",
+    "categoria": [
+      "Estrategia"
+    ],
     "requisitos": "Bajos",
     "imagen": "Meccha-Chameleon-Juego-gratis-para-pc.jpg",
     "peso": "4 GB",
@@ -191,12 +232,17 @@
     "rec_disco": "",
     "instrucciones_update": "",
     "link_update": "",
-    "link_caido": false
+    "link_caido": false,
+    "categorias": [
+      "Estrategia"
+    ]
   },
   {
     "id": "palworld",
     "titulo": "PALWORLD PC ESPAÑOL",
-    "categoria": "Acción",
+    "categoria": [
+      "Acción"
+    ],
     "requisitos": "Altos",
     "imagen": "Palworld-Juego.jpg",
     "peso": " 29 GB",
@@ -225,12 +271,17 @@
     "rec_disco": "40 GB de espacio disponible",
     "instrucciones_update": "",
     "link_update": "",
-    "link_caido": false
+    "link_caido": false,
+    "categorias": [
+      "Acción"
+    ]
   },
   {
     "id": "phasmophobia",
     "titulo": "PHASMOPHOBIA PC ESPAÑOL V0.17.1.5 ONLINE STEAM",
-    "categoria": "Terror",
+    "categoria": [
+      "Terror"
+    ],
     "requisitos": "Medios",
     "imagen": "Phasmophobia-PiviGames.jpg",
     "peso": "7 GB",
@@ -259,12 +310,17 @@
     "rec_disco": "15 GB de espacio disponible",
     "instrucciones_update": "",
     "link_update": "",
-    "link_caido": false
+    "link_caido": false,
+    "categorias": [
+      "Terror"
+    ]
   },
   {
     "id": "residentevil7",
     "titulo": "RESIDENT EVIL 7 GOLD EDITION PC ESPAÑOL",
-    "categoria": "Terror",
+    "categoria": [
+      "Terror"
+    ],
     "requisitos": "Medios",
     "imagen": "Descargar-Resident-Evil-7-Gold-Edition-PC-Español.jpg",
     "peso": "30 GB",
@@ -293,12 +349,17 @@
     "rec_disco": "24 GB de espacio disponible",
     "instrucciones_update": "",
     "link_update": "",
-    "link_caido": false
+    "link_caido": false,
+    "categorias": [
+      "Terror"
+    ]
   },
   {
     "id": "therogueprinceofpersia",
     "titulo": "THE ROGUE PRINCE OF PERSIA PC ESPAÑOL",
-    "categoria": "Aventura",
+    "categoria": [
+      "Estrategia"
+    ],
     "requisitos": "Bajos",
     "imagen": "The-Rogue-Price-of-Persia-Juego-para-PC-Pivigames-1-768x432.jpg",
     "peso": "800 MB",
@@ -327,6 +388,9 @@
     "rec_disco": "",
     "instrucciones_update": "",
     "link_update": "",
-    "link_caido": false
+    "link_caido": false,
+    "categorias": [
+      "Estrategia"
+    ]
   }
 ]

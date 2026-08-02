@@ -102,16 +102,11 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label fw-bold text-dark">¿Con qué juego necesitas ayuda?</label>
-                                <select id="juegoSeleccionado" class="form-select border-nexus" required>
-                                    <option value="" selected disabled>Selecciona un juego...</option>
-                                    <option value="Consulta General">Consulta General / Otro</option>
-                                    <option value="Conan Exiles">Conan Exiles</option>
-                                    <option value="Khazan">The First Berserker: Khazan</option>
-                                    <option value="Palworld">Palworld</option>
-                                    <option value="Phasmophobia">Phasmophobia</option>
-                                    <option value="GTA V">Grand Theft Auto V</option>
-                                </select>
+                                <label class="form-label fw-bold text-dark" for="juegoSeleccionado">¿Con qué juego necesitas ayuda?</label>
+                                <input class="form-control border-nexus" list="lista-juegos" id="juegoSeleccionado" placeholder="Escribe o selecciona un juego..." required>
+                                <datalist id="lista-juegos">
+                                    <option value="Consulta General / Otro"></option>
+                                    </datalist>
                             </div>
 
                             <div class="mb-3">
@@ -119,7 +114,7 @@
                                 <textarea id="mensajeComentario" class="form-control border-nexus" rows="4" placeholder="Explica detalladamente qué ayuda necesitas..." required></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-nexus w-100 fw-bold py-2 shadow-sm uppercase">
+                            <button type="submit" class="btn btn-nexus w-100 fw-bold py-2 shadow-sm text-uppercase">
                                 <i class="fa-solid fa-paper-plane me-2"></i> ENVIAR COMENTARIO
                             </button>
                         </form>
@@ -147,6 +142,21 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            
+            // --- CARGAR LISTA DE JUEGOS DINÁMICAMENTE ---
+            fetch('/api/juegos')
+                .then(response => response.json())
+                .then(juegos => {
+                    const dataList = document.getElementById('lista-juegos');
+                    juegos.forEach(juego => {
+                        const option = document.createElement('option');
+                        option.value = juego.titulo;
+                        dataList.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error al cargar la lista de juegos:', error));
+
+            // --- LÓGICA DE COMENTARIOS ---
             const formComentario = document.getElementById('formComentario');
             const listaComentarios = document.getElementById('listaComentarios');
             const contadorComentarios = document.getElementById('contadorComentarios');
@@ -247,6 +257,5 @@
             renderizarComentarios();
         });
     </script>
-
 </body>
 </html>

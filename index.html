@@ -1,138 +1,17 @@
-
-    </div><!DOCTYPE html>
-<html lang="es">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>NexusGames | Tu universo de videojuegos</title>
-
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Este es el código del Favicon -->
-    <link rel="icon" type="image/png" href="juegos/imagenes/IDENTIDAD.png">
-
-</head>
-
-<!-- Script de Filtro Dinámico -->
-<!-- Script Definitivo: Paginación y Filtros Dinámicos -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // 1. Leemos la URL
-            const parametrosURL = new URLSearchParams(window.location.search);
-            const categoriaFiltro = parametrosURL.get('cat');
-            const requisitosFiltro = parametrosURL.get('req'); 
-            const busquedaFiltro = parametrosURL.get('buscar');
-            
-            // --- CONFIGURACIÓN DE PAGINACIÓN ---
-            let paginaActual = parseInt(parametrosURL.get('pag')) || 1;
-            const juegosPorPagina = 6; // Cantidad de juegos por ventana
-            
-            // 2. Buscamos todas las tarjetas y contenedores
-            const tarjetas = Array.from(document.querySelectorAll('.juego-tarjeta'));
-            const tituloSeccion = document.getElementById('titulo-juegos');
-            const contenedorPaginacion = document.getElementById('paginacion');
-
-            // --- LÓGICA AUTOMÁTICA DE LA ETIQUETA "NUEVO" ---
-            // Le decimos al código que solo muestre la etiqueta en los primeros 6 juegos del HTML
-            tarjetas.forEach((tarjeta, index) => {
-                // Buscamos cualquier elemento dentro de la tarjeta que pueda ser la etiqueta
-                const insignias = tarjeta.querySelectorAll('.badge, .bg-warning, span');
-                insignias.forEach(insignia => {
-                    // Si el texto exacto dice "NUEVO"
-                    if (insignia.textContent.trim().toUpperCase() === 'NUEVO') {
-                        if (index >= 6) {
-                            // Si la tarjeta no es de las primeras 6, ocultamos la etiqueta
-                            insignia.style.display = 'none'; 
-                        } else {
-                            // Si está entre las primeras 6, la mantenemos visible
-                            insignia.style.display = 'inline-block'; 
-                        }
-                    }
-                });
-            });
-
-            let tarjetasFiltradas = tarjetas;
-
-            // 3. Aplicar Filtros (Búsqueda, Categorías o Requisitos)
-            if (busquedaFiltro) {
-                const termino = busquedaFiltro.toLowerCase();
-                if(tituloSeccion) tituloSeccion.innerHTML = `<i class="fa-solid fa-magnifying-glass me-2"></i> RESULTADOS PARA: "${busquedaFiltro.toUpperCase()}"`;
-                tarjetasFiltradas = tarjetas.filter(tarjeta => tarjeta.textContent.toLowerCase().includes(termino));
-            } else if (categoriaFiltro) {
-                if(tituloSeccion) tituloSeccion.innerHTML = `<i class="fa-regular fa-calendar-days me-2"></i> JUEGOS DE ${categoriaFiltro.toUpperCase()}`;
-                tarjetasFiltradas = tarjetas.filter(tarjeta => tarjeta.getAttribute('data-categoria') === categoriaFiltro);
-            } else if (requisitosFiltro) {
-                if(tituloSeccion) tituloSeccion.innerHTML = `<i class="fa-regular fa-calendar-days me-2"></i> JUEGOS DE ${requisitosFiltro.toUpperCase()} REQUISITOS`;
-                tarjetasFiltradas = tarjetas.filter(tarjeta => tarjeta.getAttribute('data-requisitos') === requisitosFiltro);
-            }
-
-            // 4. Ocultar TODAS las tarjetas por defecto
-            tarjetas.forEach(tarjeta => tarjeta.style.display = 'none');
-
-            // 5. Lógica de Paginación Matemática
-            const totalPaginas = Math.ceil(tarjetasFiltradas.length / juegosPorPagina);
-            if (paginaActual > totalPaginas && totalPaginas > 0) paginaActual = totalPaginas;
-
-            const inicio = (paginaActual - 1) * juegosPorPagina;
-            const fin = inicio + juegosPorPagina;
-
-            // 6. Mostrar SOLO los juegos de la página actual
-            tarjetasFiltradas.slice(inicio, fin).forEach(tarjeta => tarjeta.style.display = 'block');
-
-            // 7. Generar los botones (1, 2, 3...)
-            if (contenedorPaginacion) {
-                if (totalPaginas > 1) {
-                    let htmlPaginacion = '';
-                    let urlBase = '?';
-                    if (categoriaFiltro) urlBase += `cat=${categoriaFiltro}&`;
-                    if (requisitosFiltro) urlBase += `req=${requisitosFiltro}&`;
-                    if (busquedaFiltro) urlBase += `buscar=${busquedaFiltro}&`;
-
-                    for (let i = 1; i <= totalPaginas; i++) {
-                        if (i === paginaActual) {
-                            htmlPaginacion += `<li class="page-item active"><a class="page-link bg-danger text-white border-danger" href="${urlBase}pag=${i}">${i}</a></li>`;
-                        } else {
-                            htmlPaginacion += `<li class="page-item"><a class="page-link text-danger border-danger" href="${urlBase}pag=${i}">${i}</a></li>`;
-                        }
-                    }
-                    contenedorPaginacion.innerHTML = htmlPaginacion;
-                } else {
-                    contenedorPaginacion.innerHTML = '';
-                }
-            }
-        });
-    </script>
-<body>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusGames | Descargas</title>
-
-    <!-- Bootstrap -->
+    <title>NexusGames | Tu Directorio de Videojuegos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Iconos (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="juegos/imagenes/IDENTIDAD.png">
 </head>
 <body class="bg-light">
 
-    <!-- NAVBAR ROJO ESTILO PIVIGAMES -->
-<nav class="navbar navbar-expand-lg custom-navbar">
+    <nav class="navbar navbar-expand-lg custom-navbar py-2">
         <div class="container">
             <a class="navbar-brand text-white fw-bold fs-4 d-flex align-items-center" href="index.html">
                 <img src="juegos/imagenes/IDENTIDAD.png" alt="Logo" style="height: 35px;" class="me-2">
@@ -149,16 +28,28 @@
                         <a class="nav-link text-white px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Categorías
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownCategorias">
+                        <ul class="dropdown-menu dropdown-menu-dark" style="min-width: 250px; max-height: 400px; overflow-y: auto;">
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=2d"><i class="fa-solid fa-gamepad me-2 text-muted"></i> 2D</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=accion"><i class="fa-solid fa-crosshairs me-2 text-danger"></i> Acción</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=aventura"><i class="fa-solid fa-map-location-dot me-2 text-warning"></i> Aventura</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=anime"><i class="fa-solid fa-khanda me-2 text-warning"></i> Anime</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=carreras"><i class="fa-solid fa-car-side me-2 text-primary"></i> Carreras</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=construccion"><i class="fa-solid fa-hammer me-2 text-info"></i> Construcción</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=deportes"><i class="fa-solid fa-futbol me-2 text-success"></i> Deportes</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=estrategia"><i class="fa-solid fa-chess-knight me-2 text-success"></i> Estrategia</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=shooter"><i class="fa-solid fa-gun me-2 text-secondary"></i> Shooter</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=guerra"><i class="fa-solid fa-jet-fighter me-2 text-danger"></i> Guerra</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=lucha"><i class="fa-solid fa-hand-fist me-2 text-warning"></i> Lucha</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=rol"><i class="fa-solid fa-wand-magic-sparkles me-2 text-info"></i> Rol</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=simulacion"><i class="fa-solid fa-tractor me-2 text-light"></i> Simulación</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=supervivencia"><i class="fa-solid fa-mask-ventilator me-2 text-light"></i> Supervivencia</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=terror"><i class="fa-solid fa-ghost me-2 text-secondary"></i> Terror</a></li>
-                            
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=zombies"><i class="fa-solid fa-biohazard me-2 text-success"></i> Zombies</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=mundo-abierto"><i class="fa-solid fa-earth-americas me-2 text-primary"></i> Mundo Abierto</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=multiplayer-online"><i class="fa-solid fa-globe me-2 text-warning"></i> Multiplayer Online</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=pantalla-dividida"><i class="fa-solid fa-users me-2 text-info"></i> Pantalla Dividida</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=pixelados"><i class="fa-solid fa-border-all me-2 text-muted"></i> Pixelados</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            
-                            <li><a class="dropdown-item fw-bold text-center text-info" href="index.html">VER TODAS LAS CATEGORÍAS...</a></li>
+                            <li><a class="dropdown-item fw-bold text-center text-info" href="index.html">VER TODO EL CATÁLOGO</a></li>
                         </ul>
                     </li>
                     
@@ -166,7 +57,7 @@
                         <a class="nav-link text-white px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Requisitos
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownRequisitos">
+                        <ul class="dropdown-menu dropdown-menu-dark">
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?req=bajos"><i class="fa-solid fa-battery-quarter me-2 text-success"></i> Bajos Requisitos</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?req=medios"><i class="fa-solid fa-battery-half me-2 text-warning"></i> Medios Requisitos</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?req=altos"><i class="fa-solid fa-battery-full me-2 text-danger"></i> Altos Requisitos</a></li>
@@ -177,41 +68,42 @@
                 </ul>
 
                 <div class="d-flex align-items-center gap-3 ms-lg-3 mt-3 mt-lg-0">
-                        <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5"><i class="fa-brands fa-youtube hover-rojo"></i></a>
-                        <a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-white fs-5"><i class="fa-brands fa-discord hover-rojo"></i></a>
-                                    
-                                    <form action="index.html" method="GET" class="d-flex align-items-center m-0">
-                                        <input class="form-control me-2 border-0 rounded-pill px-3 shadow-sm" type="search" name="buscar" placeholder="Buscar juego..." aria-label="Search" required>
-                                        <button class="btn btn-dark rounded-pill px-3 shadow-sm" type="submit">
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                        </button>
-                                    </form>
+                    <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-discord"></i></a>
+                    <form action="index.html" method="GET" class="d-flex align-items-center m-0 ms-auto">
+                        <input class="form-control me-2 border-0 rounded-pill px-3 shadow-sm" type="search" name="buscar" placeholder="Buscar juego..." aria-label="Search" required>
+                        <button class="btn btn-dark rounded-pill px-3 shadow-sm" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- CONTENIDO PRINCIPAL -->
     <div class="container mt-4 mb-5">
-        
-        <!-- Título de Sección -->
-        <div class="d-flex align-items-center mb-3">
-            <h5 id="titulo-juegos" class="m-0 text-primary fw-bold text-uppercase" style="letter-spacing: 0.5px;">
-                <i class="fa-regular fa-calendar-days me-2"></i> Últimas Publicaciones
-            </h5>
-        </div>
-
         <div class="row">
-            <!-- COLUMNA IZQUIERDA: Cuadrícula de Juegos -->
             <div class="col-lg-9">
+        <h4 id="titulo-seccion" class="fw-bold text-uppercase mb-4 text-secondary"><i class="fa-solid fa-calendar-days me-2 text-danger"></i>Últimas Publicaciones</h4>                
                 <div class="row g-4">
-<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="terror" data-requisitos="medios">
-        <a href="juegos/residentevil7.html" class="text-decoration-none text-dark game-post">
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="estrategia" data-requisitos="bajos">
+        <a href="juegos/therogueprinceofpersia.html" class="text-decoration-none text-dark game-post">
             <div class="position-relative">
-                <img src="juegos/imagenes/Descargar-Resident-Evil-7-Gold-Edition-PC-Español.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <img src="juegos/imagenes/The-Rogue-Price-of-Persia-Juego-para-PC-Pivigames-1-768x432.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
                 <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
             </div>
-            <h6 class="mt-2 mb-1 fw-bold text-uppercase">RESIDENT EVIL 7 GOLD EDITION PC ESPAÑOL</h6>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">THE ROGUE PRINCE OF PERSIA PC ESPAÑOL</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Estrategia, Bajos Requisitos</p>
+        </a>
+    </div>
+    
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="terror" data-requisitos="medios">
+        <a href="juegos/phasmophobia.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/Phasmophobia-PiviGames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">PHASMOPHOBIA PC ESPAÑOL V0.17.1.5 ONLINE STEAM</h6>
             <p class="text-muted" style="font-size: 0.75rem;">Terror, Medios Requisitos</p>
         </a>
     </div>
@@ -227,18 +119,7 @@
         </a>
     </div>
     
-<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="aventura" data-requisitos="bajos">
-        <a href="juegos/therogueprinceofpersia.html" class="text-decoration-none text-dark game-post">
-            <div class="position-relative">
-                <img src="juegos/imagenes/The-Rogue-Price-of-Persia-Juego-para-PC-Pivigames-1-768x432.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
-                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
-            </div>
-            <h6 class="mt-2 mb-1 fw-bold text-uppercase">THE ROGUE PRINCE OF PERSIA PC ESPAÑOL</h6>
-            <p class="text-muted" style="font-size: 0.75rem;">Aventura, Bajos Requisitos</p>
-        </a>
-    </div>
-    
-<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="acción" data-requisitos="bajos">
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion" data-requisitos="bajos">
         <a href="juegos/halo.html" class="text-decoration-none text-dark game-post">
             <div class="position-relative">
                 <img src="juegos/imagenes/HALO-Compaign-Evolved-Juego-para-PC.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
@@ -248,77 +129,6 @@
             <p class="text-muted" style="font-size: 0.75rem;">Acción, Bajos Requisitos</p>
         </a>
     </div>
-    
-
-    
-<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="terror" data-requisitos="medios">
-        <a href="juegos/phasmophobia.html" class="text-decoration-none text-dark game-post">
-            <div class="position-relative">
-                <img src="juegos/imagenes/Phasmophobia-PiviGames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
-                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
-            </div>
-            <h6 class="mt-2 mb-1 fw-bold text-uppercase">PHASMOPHOBIA PC ESPAÑOL V0.17.1.5 ONLINE STEAM</h6>
-            <p class="text-muted" style="font-size: 0.75rem;">Terror, Medios Requisitos</p>
-        </a>
-    </div>
-    
-<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="acción" data-requisitos="altos">
-        <a href="juegos/palworld.html" class="text-decoration-none text-dark game-post">
-            <div class="position-relative">
-                <img src="juegos/imagenes/Palworld-Juego.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
-                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
-            </div>
-            <h6 class="mt-2 mb-1 fw-bold text-uppercase">PALWORLD PC ESPAÑOL</h6>
-            <p class="text-muted" style="font-size: 0.75rem;">Acción, Altos Requisitos</p>
-        </a>
-    </div>
-    
-<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="acción" data-requisitos="medios">
-        <a href="juegos/khazan.html" class="text-decoration-none text-dark game-post">
-            <div class="position-relative">
-                <img src="juegos/imagenes/the-first-berserker-khazan-pc-game-steam-europe-and-us-and-canada-cover.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
-                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
-            </div>
-            <h6 class="mt-2 mb-1 fw-bold text-uppercase">THE FIRST BERSERKER KHAZAN PC ESPAÑOL</h6>
-            <p class="text-muted" style="font-size: 0.75rem;">Acción, Medios Requisitos</p>
-        </a>
-    </div>
-    
-<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="acción" data-requisitos="altos">
-        <a href="juegos/conanexiles.html" class="text-decoration-none text-dark game-post">
-            <div class="position-relative">
-                <img src="juegos/imagenes/Conan-Exiles-Juego-para-PC-Pivigames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
-                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
-            </div>
-            <h6 class="mt-2 mb-1 fw-bold text-uppercase">CONAN EXILES COMPLETE EDITION + UPDATE V2.0.2</h6>
-            <p class="text-muted" style="font-size: 0.75rem;">Acción, Altos Requisitos</p>
-        </a>
-    </div>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="acción" data-requisitos="bajos">
-        <a href="juegos/gtav.html" class="text-decoration-none text-dark game-post">
-            <div class="position-relative">
-                <img src="juegos/imagenes/GTA-5-Pivigames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
-                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
-            </div>
-            <h6 class="mt-2 mb-1 fw-bold text-uppercase">GRAND THEFT AUTO V ENHANCED PC ESPAÑOL</h6>
-            <p class="text-muted" style="font-size: 0.75rem;">Acción, Bajos Requisitos</p>
-        </a>
-    </div>
-    
-
     
 <div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="carreras" data-requisitos="altos">
         <a href="juegos/forzahorizon6.html" class="text-decoration-none text-dark game-post">
@@ -331,57 +141,74 @@
         </a>
     </div>
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-                    <!-- Tarjeta de Juego 1 -->
-                    
-
-                    <!-- Tarjeta de Juego 2 -->
-                    
-
-                    <!-- Tarjeta de Juego 3 -->
-                    
-
-                    <!-- Tarjeta de Juego 4 -->
-                    
-                    
-                    <!-- Tarjeta de Juego 5 -->
-                    
-
-                    <!-- Tarjeta de Juego 6 -->
-                    
-
-                    <!-- Tarjeta de Juego 7 -->
-                    
-
-                    <!-- Tarjeta de Juego 8 -->
-                    
-
-                    <!-- Tarjeta de Juego 9 -->
-                    
-
-                    <!-- Aquí agregarías más juegos siguiendo el mismo bloque de "Tarjeta de Juego" -->
-
-                </div>
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="terror" data-requisitos="medios">
+        <a href="juegos/residentevil7.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/Descargar-Resident-Evil-7-Gold-Edition-PC-Español.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
             </div>
-            
-            <!-- COLUMNA DERECHA: Banners o Anuncios -->
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">RESIDENT EVIL 7 GOLD EDITION PC ESPAÑOL</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Terror, Medios Requisitos</p>
+        </a>
+    </div>
+    
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion" data-requisitos="altos">
+        <a href="juegos/palworld.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/Palworld-Juego.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">PALWORLD PC ESPAÑOL</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Altos Requisitos</p>
+        </a>
+    </div>
+    
+
+    
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion" data-requisitos="medios">
+        <a href="juegos/khazan.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/the-first-berserker-khazan-pc-game-steam-europe-and-us-and-canada-cover.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">THE FIRST BERSERKER KHAZAN PC ESPAÑOL</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Medios Requisitos</p>
+        </a>
+    </div>
+    
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion" data-requisitos="bajos">
+        <a href="juegos/gtav.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/GTA-5-Pivigames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">GRAND THEFT AUTO V ENHANCED PC ESPAÑOL</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Bajos Requisitos</p>
+        </a>
+    </div>
+    
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion,supervivencia,mundo-abierto" data-requisitos="altos">
+        <a href="juegos/conanexiles.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/Conan-Exiles-Juego-para-PC-Pivigames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">CONAN EXILES COMPLETE EDITION + UPDATE V2.0.2</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Supervivencia, Mundo Abierto, Altos Requisitos</p>
+        </a>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+                    </div>
+            </div>
+
             <div class="col-lg-3 mt-4 mt-lg-0">
                 <div class="h-100 w-100">
                     <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
@@ -390,21 +217,17 @@
                     </video>
                 </div>
             </div>
-
         </div>
     </div>
 
-        <!-- Contenedor de Paginación -->
-            <div class="container mt-5 mb-5">
-                <nav aria-label="Navegación de páginas">
-                    <ul class="pagination justify-content-center fw-bold" id="paginacion">
-                        <!-- El JavaScript creará los botones 1, 2, 3 aquí de forma automática -->
-                    </ul>
-                </nav>
-            </div>
+    <div class="container mt-5 mb-5">
+        <nav aria-label="Navegación de páginas">
+            <ul class="pagination justify-content-center fw-bold" id="paginacion">
+                </ul>
+        </nav>
+    </div>
 
-<!-- FOOTER CORREGIDO Y COMPACTO -->
-<footer class="bg-dark text-white mt-5 border-top border-danger border-3 mi-footer">
+    <footer class="bg-dark text-white mt-5 border-top border-danger border-3 mi-footer">
         <div class="container py-4">
             <div class="row">
                 <div class="col-md-4 mb-3">
@@ -417,18 +240,18 @@
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold mb-2 text-uppercase fs-6">Enlaces Útiles</h5>
                     <ul class="list-unstyled text-light opacity-75 small mb-0">
-                        <li class="mb-1"><a href="../index.html" class="text-decoration-none text-light link-hover">Inicio</a></li>
+                        <li class="mb-1"><a href="index.html" class="text-decoration-none text-light link-hover">Inicio</a></li>
                         <li class="mb-1"><a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-decoration-none text-light link-hover">Pedir un juego</a></li>
                         <li class="mb-1"><a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-decoration-none text-light link-hover">Cómo descargar (Tutorial)</a></li>
-                        <li><a href="../ayuda.html" class="text-decoration-none text-light link-hover">DMCA / Reclamaciones</a></li>
+                        <li><a href="ayuda.html" class="text-decoration-none text-light link-hover">DMCA / Reclamaciones</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold mb-2 text-uppercase fs-6">Únete a la comunidad</h5>
                     <div class="d-flex gap-3 mt-2">
-                        <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5"><i class="fa-brands fa-youtube hover-rojo"></i></a>
-                        <a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-white fs-5"><i class="fa-brands fa-discord hover-rojo"></i></a>
+                        <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-discord"></i></a>
                     </div>
                 </div>
             </div>
@@ -442,10 +265,141 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    
+<script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const catFiltrar = urlParams.get('cat');
+        const reqFiltrar = urlParams.get('req');
+        const busqueda = urlParams.get('buscar');
+        let paginaActual = parseInt(urlParams.get('pagina')) || 1; 
+        const juegosPorPagina = 6; 
+
+        const normalizarTexto = (texto) => texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const tarjetas = document.querySelectorAll(".juego-tarjeta");
+            const tituloSeccion = document.getElementById("titulo-seccion");
+
+            const iconosCategoria = {
+                "2d": { icono: "fa-gamepad", texto: "Juegos 2D", color: "text-muted" },
+                "accion": { icono: "fa-crosshairs", texto: "Acción", color: "text-danger" },
+                "anime": { icono: "fa-khanda", texto: "Anime", color: "text-warning" },
+                "carreras": { icono: "fa-car-side", texto: "Carreras", color: "text-primary" },
+                "construccion": { icono: "fa-hammer", texto: "Construcción", color: "text-info" },
+                "deportes": { icono: "fa-futbol", texto: "Deportes", color: "text-success" },
+                "estrategia": { icono: "fa-chess-knight", texto: "Estrategia", color: "text-success" },
+                "shooter": { icono: "fa-gun", texto: "Shooter", color: "text-secondary" },
+                "guerra": { icono: "fa-jet-fighter", texto: "Guerra", color: "text-danger" },
+                "lucha": { icono: "fa-hand-fist", texto: "Lucha", color: "text-warning" },
+                "rol": { icono: "fa-wand-magic-sparkles", texto: "Rol", color: "text-info" },
+                "simulacion": { icono: "fa-tractor", texto: "Simulación", color: "text-light" },
+                "supervivencia": { icono: "fa-mask-ventilator", texto: "Supervivencia", color: "text-light" },
+                "terror": { icono: "fa-ghost", texto: "Terror", color: "text-secondary" },
+                "zombies": { icono: "fa-biohazard", texto: "Zombies", color: "text-success" },
+                "mundo-abierto": { icono: "fa-earth-americas", texto: "Mundo Abierto", color: "text-primary" },
+                "multiplayer-online": { icono: "fa-globe", texto: "Multiplayer Online", color: "text-warning" },
+                "pantalla-dividida": { icono: "fa-users", texto: "Pantalla Dividida", color: "text-info" },
+                "pixelados": { icono: "fa-border-all", texto: "Pixelados", color: "text-muted" }
+            };
+
+            const iconosReq = {
+                "bajos": { icono: "fa-battery-quarter", texto: "Bajos Requisitos", color: "text-success" },
+                "medios": { icono: "fa-battery-half", texto: "Medios Requisitos", color: "text-warning" },
+                "altos": { icono: "fa-battery-full", texto: "Altos Requisitos", color: "text-danger" }
+            };
+
+            if (tituloSeccion) {
+                if (catFiltrar && iconosCategoria[catFiltrar]) {
+                    const cat = iconosCategoria[catFiltrar];
+                    tituloSeccion.innerHTML = `<i class="fa-solid ${cat.icono} me-2 ${cat.color}"></i>${cat.texto}`;
+                } else if (reqFiltrar && iconosReq[reqFiltrar]) {
+                    const req = iconosReq[reqFiltrar];
+                    tituloSeccion.innerHTML = `<i class="fa-solid ${req.icono} me-2 ${req.color}"></i>Juegos de ${req.texto}`;
+                } else if (busqueda) {
+                    tituloSeccion.innerHTML = `<i class="fa-solid fa-magnifying-glass me-2 text-info"></i>Resultados para: "${busqueda}"`;
+                }
+            }
+
+            let tarjetasFiltradas = [];
+
+            tarjetas.forEach(tarjeta => {
+                const tarjetaCats = tarjeta.getAttribute("data-categoria").split(",");
+                const tarjetaReq = tarjeta.getAttribute("data-requisitos");
+                const tarjetaTitulo = normalizarTexto(tarjeta.querySelector("h6").innerText);
+
+                let coincide = true;
+
+                if (catFiltrar && !tarjetaCats.includes(catFiltrar.toLowerCase())) coincide = false;
+                if (reqFiltrar && tarjetaReq !== reqFiltrar.toLowerCase()) coincide = false;
+                if (busqueda && !tarjetaTitulo.includes(normalizarTexto(busqueda))) coincide = false;
+
+                tarjeta.style.setProperty("display", "none", "important");
+
+                if (coincide) {
+                    tarjetasFiltradas.push(tarjeta);
+                }
+            });
+
+            const totalPaginas = Math.ceil(tarjetasFiltradas.length / juegosPorPagina);
+            
+            if (paginaActual < 1) paginaActual = 1;
+            if (paginaActual > totalPaginas && totalPaginas > 0) paginaActual = totalPaginas;
+
+            const indiceInicio = (paginaActual - 1) * juegosPorPagina;
+            const indiceFin = indiceInicio + juegosPorPagina;
+
+            const tarjetasAMostrar = tarjetasFiltradas.slice(indiceInicio, indiceFin);
+            tarjetasAMostrar.forEach(tarjeta => {
+                tarjeta.style.display = "block";
+                
+                // Ocultar la etiqueta "NUEVO" si no es la primera página
+                const etiquetaNuevo = tarjeta.querySelector('.badge.bg-warning');
+                if (etiquetaNuevo) {
+                    if (paginaActual === 1) {
+                        etiquetaNuevo.style.display = ""; 
+                    } else {
+                        etiquetaNuevo.style.display = "none"; 
+                    }
+                }
+            });
+
+            generarPaginacion(totalPaginas, paginaActual);
+        });
+
+        function generarPaginacion(totalPaginas, actual) {
+            const paginacionUl = document.getElementById("paginacion");
+            paginacionUl.innerHTML = ""; 
+
+            if (totalPaginas <= 1) return;
+
+            const crearUrlPagina = (pag) => {
+                const params = new URLSearchParams(window.location.search);
+                params.set('pagina', pag);
+                return window.location.pathname + '?' + params.toString();
+            };
+
+            const liAnterior = document.createElement("li");
+            liAnterior.className = `page-item ${actual === 1 ? 'disabled' : ''}`;
+            liAnterior.innerHTML = `<a class="page-link text-danger" href="${actual === 1 ? '#' : crearUrlPagina(actual - 1)}">Anterior</a>`;
+            paginacionUl.appendChild(liAnterior);
+
+            for (let i = 1; i <= totalPaginas; i++) {
+                const liNum = document.createElement("li");
+                liNum.className = `page-item ${actual === i ? 'active' : ''}`;
+                
+                if(actual === i) {
+                    liNum.innerHTML = `<span class="page-link bg-danger border-danger text-white">${i}</span>`;
+                } else {
+                    liNum.innerHTML = `<a class="page-link text-dark" href="${crearUrlPagina(i)}">${i}</a>`;
+                }
+                paginacionUl.appendChild(liNum);
+            }
+
+            const liSiguiente = document.createElement("li");
+            liSiguiente.className = `page-item ${actual === totalPaginas ? 'disabled' : ''}`;
+            liSiguiente.innerHTML = `<a class="page-link text-danger" href="${actual === totalPaginas ? '#' : crearUrlPagina(actual + 1)}">Siguiente</a>`;
+            paginacionUl.appendChild(liSiguiente);
+        }
+    </script>
 </body>
-</html>
-
-
-</body>
-
 </html>

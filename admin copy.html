@@ -5,16 +5,6 @@
     <title>Panel de Control CMS | NexusGames</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .caja-categorias {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            border-radius: 0.375rem;
-            padding: 15px;
-            max-height: 250px; /* Un poco más alto para las nuevas categorías */
-            overflow-y: auto;
-        }
-    </style>
 </head>
 <body class="bg-dark text-white py-4">
 
@@ -48,39 +38,19 @@
                                 <label class="fw-bold small">Título del Juego</label>
                                 <input type="text" name="titulo" class="form-control" required>
                             </div>
-                            
-                            <div class="mb-3">
-                                <label class="fw-bold small d-block mb-2">Selecciona las Categorías del Juego</label>
-                                <div class="caja-categorias row g-2 m-0">
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="2D" id="cat_crear_2d"><label class="form-check-label small" for="cat_crear_2d">2D</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Acción" id="cat_crear_accion"><label class="form-check-label small" for="cat_crear_accion">Acción</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Anime" id="cat_crear_anime"><label class="form-check-label small" for="cat_crear_anime">Anime</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Carreras" id="cat_crear_carreras"><label class="form-check-label small" for="cat_crear_carreras">Carreras</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Construcción" id="cat_crear_construccion"><label class="form-check-label small" for="cat_crear_construccion">Construcción</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Deportes" id="cat_crear_deportes"><label class="form-check-label small" for="cat_crear_deportes">Deportes</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Estrategia" id="cat_crear_estrategia"><label class="form-check-label small" for="cat_crear_estrategia">Estrategia</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Shooter" id="cat_crear_shooter"><label class="form-check-label small" for="cat_crear_shooter">Shooter</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Guerra" id="cat_crear_guerra"><label class="form-check-label small" for="cat_crear_guerra">Guerra</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Lucha" id="cat_crear_lucha"><label class="form-check-label small" for="cat_crear_lucha">Lucha</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Rol" id="cat_crear_rol"><label class="form-check-label small" for="cat_crear_rol">Rol</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Simulación" id="cat_crear_simulacion"><label class="form-check-label small" for="cat_crear_simulacion">Simulación</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Supervivencia" id="cat_crear_supervivencia"><label class="form-check-label small" for="cat_crear_supervivencia">Supervivencia</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Terror" id="cat_crear_terror"><label class="form-check-label small" for="cat_crear_terror">Terror</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Zombies" id="cat_crear_zombies"><label class="form-check-label small" for="cat_crear_zombies">Zombies</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Mundo Abierto" id="cat_crear_mundo"><label class="form-check-label small" for="cat_crear_mundo">Mundo Abierto</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Multiplayer Online" id="cat_crear_multi"><label class="form-check-label small" for="cat_crear_multi">Multiplayer Online</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Pantalla Dividida" id="cat_crear_dividida"><label class="form-check-label small" for="cat_crear_dividida">Pantalla Dividida</label></div></div>
-                                    <div class="col-sm-4"><div class="form-check"><input class="form-check-input" type="checkbox" name="categorias" value="Pixelados" id="cat_crear_pixelados"><label class="form-check-label small" for="cat_crear_pixelados">Pixelados</label></div></div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="fw-bold small">Categoría</label>
+                                    <input type="text" name="categoria" class="form-control" required>
                                 </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="fw-bold small">Nivel de Requisitos de Portada</label>
-                                <select name="requisitos" class="form-select" required>
-                                    <option value="Bajos">Bajos</option>
-                                    <option value="Medios">Medios</option>
-                                    <option value="Altos">Altos</option>
-                                </select>
+                                <div class="col-md-6 mb-3">
+                                    <label class="fw-bold small">Nivel de Requisitos</label>
+                                    <select name="requisitos" class="form-select" required>
+                                        <option value="Bajos">Bajos</option>
+                                        <option value="Medios">Medios</option>
+                                        <option value="Altos">Altos</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label class="fw-bold small">Subir Portada (Imagen)</label>
@@ -142,6 +112,7 @@
                             </div>
 
                             <h5 class="fw-bold border-bottom border-danger pb-2 mb-3 mt-4 text-danger">3. Requisitos del Sistema</h5>
+                            
                             <p class="mb-2 fw-bold text-muted small">MÍNIMOS:</p>
                             <div class="row g-3 mb-3">
                                 <div class="col-md-4"><input type="text" name="min_so" class="form-control" placeholder="SO Mínimo" required></div>
@@ -151,6 +122,7 @@
                                 <div class="col-md-4"><input type="text" name="min_dx" class="form-control" placeholder="DirectX Mínimo" required></div>
                                 <div class="col-md-4"><input type="text" name="min_disco" class="form-control" placeholder="Disco Mínimo" required></div>
                             </div>
+
                             <p class="mb-2 fw-bold text-muted small mt-4">RECOMENDADOS:</p>
                             <div class="row g-3 mb-4">
                                 <div class="col-md-4"><input type="text" name="rec_so" class="form-control" placeholder="SO Recomendado" required></div>
@@ -204,32 +176,7 @@
                             <label class="fw-bold small">Título del Juego</label>
                             <input type="text" name="titulo" id="edit_titulo" class="form-control" required>
                         </div>
-
-                        <div class="mb-3">
-                            <label class="fw-bold small d-block mb-2">Categorías del Juego</label>
-                            <div class="caja-categorias row g-2 m-0">
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="2D" id="cat_edit_2d"><label class="form-check-label small" for="cat_edit_2d">2D</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Acción" id="cat_edit_accion"><label class="form-check-label small" for="cat_edit_accion">Acción</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Anime" id="cat_edit_anime"><label class="form-check-label small" for="cat_edit_anime">Anime</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Carreras" id="cat_edit_carreras"><label class="form-check-label small" for="cat_edit_carreras">Carreras</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Construcción" id="cat_edit_construccion"><label class="form-check-label small" for="cat_edit_construccion">Construcción</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Deportes" id="cat_edit_deportes"><label class="form-check-label small" for="cat_edit_deportes">Deportes</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Estrategia" id="cat_edit_estrategia"><label class="form-check-label small" for="cat_edit_estrategia">Estrategia</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Shooter" id="cat_edit_shooter"><label class="form-check-label small" for="cat_edit_shooter">Shooter</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Guerra" id="cat_edit_guerra"><label class="form-check-label small" for="cat_edit_guerra">Guerra</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Lucha" id="cat_edit_lucha"><label class="form-check-label small" for="cat_edit_lucha">Lucha</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Rol" id="cat_edit_rol"><label class="form-check-label small" for="cat_edit_rol">Rol</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Simulación" id="cat_edit_simulacion"><label class="form-check-label small" for="cat_edit_simulacion">Simulación</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Supervivencia" id="cat_edit_supervivencia"><label class="form-check-label small" for="cat_edit_supervivencia">Supervivencia</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Terror" id="cat_edit_terror"><label class="form-check-label small" for="cat_edit_terror">Terror</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Zombies" id="cat_edit_zombies"><label class="form-check-label small" for="cat_edit_zombies">Zombies</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Mundo Abierto" id="cat_edit_mundo"><label class="form-check-label small" for="cat_edit_mundo">Mundo Abierto</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Multiplayer Online" id="cat_edit_multi"><label class="form-check-label small" for="cat_edit_multi">Multiplayer Online</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Pantalla Dividida" id="cat_edit_dividida"><label class="form-check-label small" for="cat_edit_dividida">Pantalla Dividida</label></div></div>
-                                <div class="col-sm-4"><div class="form-check"><input class="form-check-input check-cat-edit" type="checkbox" name="categorias" value="Pixelados" id="cat_edit_pixelados"><label class="form-check-label small" for="cat_edit_pixelados">Pixelados</label></div></div>
-                            </div>
-                        </div>
-
+                        
                         <div class="p-3 bg-light rounded border mb-3">
                             <label class="fw-bold small text-dark">Link de Descarga del Juego (uTorrent)</label>
                             <input type="url" name="link" id="edit_link" class="form-control mb-2">
@@ -241,13 +188,19 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="fw-bold small">Nivel Requisitos</label>
-                            <select name="requisitos" id="edit_requisitos" class="form-select" required>
-                                <option value="Bajos">Bajos</option>
-                                <option value="Medios">Medios</option>
-                                <option value="Altos">Altos</option>
-                            </select>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="fw-bold small">Categoría</label>
+                                <input type="text" name="categoria" id="edit_categoria" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="fw-bold small">Nivel Requisitos</label>
+                                <select name="requisitos" id="edit_requisitos" class="form-select" required>
+                                    <option value="Bajos">Bajos</option>
+                                    <option value="Medios">Medios</option>
+                                    <option value="Altos">Altos</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="mb-3">
@@ -353,9 +306,7 @@
                 .then(res => res.json())
                 .then(juegos => {
                     const contenedor = document.getElementById('contenedorListaJuegos');
-                    contenedor.innerHTML = juegos.map(juego => {
-                        const cats = Array.isArray(juego.categoria) ? juego.categoria.join(', ') : juego.categoria;
-                        return `
+                    contenedor.innerHTML = juegos.map(juego => `
                         <div class="col-md-6">
                             <div class="card h-100 border shadow-sm">
                                 <div class="row g-0 align-items-center">
@@ -365,15 +316,14 @@
                                     <div class="col-8">
                                         <div class="card-body p-2">
                                             <h6 class="card-title fw-bold text-uppercase m-0">${juego.titulo}</h6>
-                                            <p class="text-muted small m-0 mb-1">${cats}</p>
                                             <p class="m-0 mb-2">${juego.link_caido === 'true' || juego.link_caido === true ? '<span class="badge bg-danger"><i class="fa-solid fa-wrench"></i> En Mantenimiento</span>' : '<span class="badge bg-success">✅ Enlace Activo</span>'}</p>
                                             <button class="btn btn-sm btn-warning fw-bold text-dark" onclick="abrirEdicion('${juego.id}')"><i class="fa-solid fa-pen"></i> Editar / Cambiar Estado</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>`;
-                    }).join('');
+                        </div>
+                    `).join('');
                 });
         }
 
@@ -383,20 +333,8 @@
                 .then(j => {
                     document.getElementById('edit_id_juego').value = j.id;
                     document.getElementById('edit_titulo').value = j.titulo;
+                    document.getElementById('edit_categoria').value = j.categoria;
                     document.getElementById('edit_requisitos').value = j.requisitos;
-                    
-                    // Resetear todos los checkboxes del modal
-                    document.querySelectorAll('.check-cat-edit').forEach(cb => cb.checked = false);
-                    
-                    // Marcar checkboxes guardados en la BD
-                    if (j.categoria) {
-                        const categoriasGuardadas = Array.isArray(j.categoria) ? j.categoria : [j.categoria];
-                        categoriasGuardadas.forEach(cat => {
-                            document.querySelectorAll('.check-cat-edit').forEach(cb => {
-                                if (cb.value === cat) cb.checked = true;
-                            });
-                        });
-                    }
                     
                     document.getElementById('edit_peso').value = j.peso;
                     document.getElementById('edit_formato').value = j.formato || 'ISO ELAMIGOS';
