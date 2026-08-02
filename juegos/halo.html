@@ -3,16 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The First Berserker: Khazan | NexusGames</title>
-    <!-- Bootstrap -->
+    <title>HALO COMBAT EVOLVED PC ESPAÑOL | NexusGames</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Iconos (FontAwesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- CSS (Ruta corregida para salir de la carpeta) -->
     <link rel="stylesheet" href="../css/style.css">
-        <!-- Este es el código del Favicon -->
     <link rel="icon" type="image/png" href="imagenes/IDENTIDAD.png">
-
+    
     <style>
         /* Estilos específicos para esta página de juego */
         .seccion-titulo {
@@ -33,15 +29,30 @@
             margin-bottom: 12px;
             font-size: 1.1rem;
         }
+        
+        /* Colores exactos de los botones de descarga */
+        .btn-utorrent-verde {
+            background-color: #0b7a38 !important; 
+            border-color: #0b7a38 !important;
+            color: white !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-utorrent-verde:hover { background-color: #09632d !important; }
+        
+        .btn-mega-verde {
+            background-color: #109e4a !important; 
+            border-color: #109e4a !important;
+            color: white !important;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-mega-verde:hover { background-color: #0d833d !important; }
     </style>
 </head>
 <body class="bg-light">
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg custom-navbar">
+<nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container">
             <a class="navbar-brand text-white fw-bold fs-4 d-flex align-items-center" href="../index.html">
-                <!-- Aquí pones tu nuevo logo -->
                 <img src="imagenes/IDENTIDAD.png" alt="Logo" style="height: 35px;" class="me-2">
                 NEXUSGAMES
             </a>
@@ -52,105 +63,93 @@
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-uppercase fw-semibold" style="font-size: 0.85rem;">
                     <li class="nav-item"><a class="nav-link text-white px-3" href="../index.html">Inicio</a></li>
                     
-                    <!-- Menú Desplegable de Categorías -->
                     <li class="nav-item dropdown">
                         <a class="nav-link text-white px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Categorías
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark border-danger border-top border-3 mt-2 shadow-lg">
-                            <li><a class="dropdown-item link-hover" href="../accion.html"><i class="fa-solid fa-crosshairs me-2 text-muted"></i>Acción</a></li>
-                            <li><a class="dropdown-item link-hover" href="../aventura.html"><i class="fa-solid fa-map-location-dot me-2 text-muted"></i>Aventura</a></li>
-                            <li><a class="dropdown-item link-hover" href="../carreras.html"><i class="fa-solid fa-car-side me-2 text-muted"></i>Carreras</a></li>
-                            <li><a class="dropdown-item link-hover" href="../estrategia.html"><i class="fa-solid fa-chess-knight me-2 text-muted"></i>Estrategia</a></li>
-                            <li><a class="dropdown-item link-hover" href="../terror.html"><i class="fa-solid fa-ghost me-2 text-muted"></i>Terror</a></li>
-                            <li><hr class="dropdown-divider border-secondary"></li>
-                            <li><a class="dropdown-item text-primary fw-bold" href="../categorias.html">Ver todas las categorías...</a></li>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownCategorias">
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=accion"><i class="fa-solid fa-crosshairs me-2 text-danger"></i> Acción</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=aventura"><i class="fa-solid fa-map-location-dot me-2 text-warning"></i> Aventura</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=carreras"><i class="fa-solid fa-car-side me-2 text-primary"></i> Carreras</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=estrategia"><i class="fa-solid fa-chess-knight me-2 text-success"></i> Estrategia</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=terror"><i class="fa-solid fa-ghost me-2 text-secondary"></i> Terror</a></li>
+                            
+                            <li><hr class="dropdown-divider"></li>
+                            
+                            <li><a class="dropdown-item fw-bold text-center text-info" href="../index.html">VER TODAS LAS CATEGORÍAS...</a></li>
                         </ul>
                     </li>
                     
-                    <!-- Menú Desplegable de Requisitos -->
                     <li class="nav-item dropdown">
                         <a class="nav-link text-white px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Requisitos
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-dark border-danger border-top border-3 mt-2 shadow-lg">
-                            <li><a class="dropdown-item link-hover" href="../bajos-requisitos.html"><i class="fa-solid fa-laptop me-2 text-success"></i>Bajos Requisitos</a></li>
-                            <li><a class="dropdown-item link-hover" href="../medios-requisitos.html"><i class="fa-solid fa-desktop me-2 text-warning"></i>Medios Requisitos</a></li>
-                            <li><a class="dropdown-item link-hover" href="../altos-requisitos.html"><i class="fa-solid fa-server me-2 text-danger"></i>Altos Requisitos</a></li>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownRequisitos">
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?req=bajos"><i class="fa-solid fa-battery-quarter me-2 text-success"></i> Bajos Requisitos</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?req=medios"><i class="fa-solid fa-battery-half me-2 text-warning"></i> Medios Requisitos</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?req=altos"><i class="fa-solid fa-battery-full me-2 text-danger"></i> Altos Requisitos</a></li>
                         </ul>
                     </li>
                     
                     <li class="nav-item"><a class="nav-link text-white px-3" href="../ayuda.html">Ayuda</a></li>
                 </ul>
 
-                <!-- Iconos y Buscador -->
                 <div class="d-flex align-items-center gap-3 ms-lg-3 mt-3 mt-lg-0">
-                    <a href="#" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-telegram"></i></a>
-                    <form class="d-flex" role="search">
-                        <div class="input-group input-group-sm shadow-sm">
-                            <input class="form-control border-0" type="search" placeholder="Buscar juego..." aria-label="Buscar">
-                            <button class="btn btn-dark border-0 px-3" type="submit" style="background-color: #212529;">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </div>
+                        <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5"><i class="fa-brands fa-youtube hover-rojo"></i></a>
+                        <a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-white fs-5"><i class="fa-brands fa-discord hover-rojo"></i></a>
+                    <form action="../index.html" method="GET" class="d-flex ms-auto">
+                        <input class="form-control me-2 border-0 rounded-pill px-3 shadow-sm" type="search" name="buscar" placeholder="Buscar juego..." aria-label="Search" required>
+                        <button class="btn btn-dark rounded-pill px-3 shadow-sm" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- CONTENIDO DEL JUEGO -->
     <div class="container mt-4 mb-5">
         
-        <!-- Migas de pan (Ruta corregida) -->
         <nav aria-label="breadcrumb" class="mb-3">
             <ol class="breadcrumb" style="font-size: 0.85rem;">
                 <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-muted">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="../index.html?cat=accion" class="text-decoration-none text-muted">Acción</a></li>
-                <li class="breadcrumb-item active fw-bold text-dark" aria-current="page">HALO COMPAIGN EVOLVED PARA PC EN ESPAÑOL</li>
+                <li class="breadcrumb-item"><a href="../index.html?cat=acción" class="text-decoration-none text-muted">Acción</a></li>
+                <li class="breadcrumb-item active fw-bold text-dark" aria-current="page">HALO COMBAT EVOLVED PC ESPAÑOL</li>
             </ol>
         </nav>
 
         <div class="row">
-            <!-- COLUMNA IZQUIERDA: Detalles del juego -->
             <div class="col-lg-9 bg-white p-4 shadow-sm rounded-1 border">
                 
-                <h1 class="h3 fw-bold mb-4 text-uppercase text-center">HALO COMPAIGN EVOLVED PARA PC EN ESPAÑOL</h1>
+                <h1 class="h3 fw-bold mb-4 text-uppercase text-center">HALO COMBAT EVOLVED PC ESPAÑOL</h1>
                 
-                <!-- Imagen Principal (Con la clase CSS predefinida) -->
                 <img src="imagenes/HALO-Compaign-Evolved-Juego-para-PC.jpg" class="rounded-1 mb-4 shadow-sm portada-juego" alt="Portada del Juego">
 
-                <!-- Breve Descripción del Juego -->
                 <div class="px-2 mb-5">
                     <p class="text-muted" style="font-size: 1.05rem; line-height: 1.7;">
-                        <strong>HALO COMPAIGN EVOLVED PARA PC EN ESPAÑOL</strong> es un videojuego de disparos en primera persona que sigue la historia del Jefe Maestro (Master Chief), un supersoldado que lucha por la supervivencia de la humanidad contra una alianza alienígena conocida como el Covenant. Tras un aterrizaje forzoso en el misterioso mundo artificial llamado Halo, el jugador deberá descubrir sus secretos y enfrentar una amenaza aún mayor que pone en peligro a toda la galaxia.
+                        HALO COMPAIGN EVOLVED PARA PC EN ESPAÑOL es un videojuego de disparos en primera persona que sigue la historia del Jefe Maestro (Master Chief), un supersoldado que lucha por la supervivencia de la humanidad contra una alianza alienígena conocida como el Covenant. Tras un aterrizaje forzoso en el misterioso mundo artificial llamado Halo, el jugador deberá descubrir sus secretos y enfrentar una amenaza aún mayor que pone en peligro a toda la galaxia.
                     </p>
                 </div>
 
-                <!-- FICHA TÉCNICA -->
-                <div class="text-center">
+            <div class="text-center">
                     <h3 class="seccion-titulo">Ficha Técnica</h3>
                 </div>
                 <ul class="lista-cuadrada fs-6 ms-3 mb-5">
                     <li><strong>PLATAFORMA:</strong> PC</li>
                     <li><strong>PESO TOTAL:</strong> 65 GB</li>
-                    <li><strong>FORMATO:</strong> ISO ELAMIGOS </li>
-                    <li><strong>FECHA DE ESTRENO:</strong> <span class="text-danger">24/07/26</span></li>
+                    <li><strong>FORMATO:</strong> ISO ELAMIGOS</li>
                     <li><strong>FECHA DE ACTUALIZACIÓN:</strong> <span class="text-danger">27/07/26</span></li>
-                    <li><strong>TEXTOS:</strong> English, French, Italian, German, Spanish, Spanish (Mexico), Russian, Polish, Portuguese-Brazil, Japanese, Korean, Traditional Chinese, Simplified Chinese</li>
-                    <li><strong>AUDIO:</strong> English, French, Italian, German, Spanish, Spanish (Mexico), Japanese, Korean, Traditional Chinese, Simplified Chinese</li>
+                    
+                    
                 </ul>
 
-                <!-- GAMEPLAY TRAILER -->
                 <div class="text-center">
                     <h3 class="seccion-titulo">Gameplay Trailer</h3>
                 </div>
                 <div class="ratio ratio-16x9 mb-5">
-                    <iframe src="https://www.youtube.com/embed/AMGJ7OMqyvI?si=3a6QST6KAPHYhAG9" title="YouTube video player" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/AMGJ7OMqyvI" title="YouTube video player" allowfullscreen></iframe>
                 </div>
 
-                <!-- REQUISITOS DEL SISTEMA -->
                 <div class="text-center">
                     <h3 class="seccion-titulo">Requisitos del Sistema</h3>
                 </div>
@@ -162,57 +161,59 @@
                         <li><strong>Procesador:</strong> AMD Ryzen 5 3600 or Intel Core i7-10700K</li>
                         <li><strong>Memoria:</strong> 16 GB de RAM</li>
                         <li><strong>Gráficos:</strong> AMD Radeon RX 6600, Intel Arc A580 or Nvidia Ge-Force RTX 2060 Super</li>
+                        <li><strong>DirectX:</strong> </li>
                         <li><strong>Almacenamiento:</strong> 100 GB de espacio disponible</li>
-                       
                     </ul>
 
                     <p class="fs-5 mb-3">RECOMENDADOS:</p>
                     <ul class="lista-cuadrada lista-requisitos ms-3 mb-4">
                         <li>Requiere un procesador y un sistema operativo de 64 bits</li>
-                        <li><strong>SO:</strong> Windows 11 </li>
+                        <li><strong>SO:</strong> Windows 11</li>
                         <li><strong>Procesador:</strong> AMD Ryzen 7 7700 or Intel Core i7-12700K</li>
                         <li><strong>Memoria:</strong> 32 GB de RAM</li>
                         <li><strong>Gráficos:</strong> AMD Radeon RX 9070 or Nvidia 3080 Ti</li>
-                        <li><strong>Almacenamiento:</strong> 100 GB de espacio disponible</li>
+                        <li><strong>DirectX:</strong> </li>
+                        <li><strong>Almacenamiento:</strong> </li>
                     </ul>
                 </div>
 
-                <!-- INSTRUCCIONES -->
                 <div class="text-center">
                     <h3 class="seccion-titulo">Instrucciones</h3>
                 </div>
                 <ol class="lista-instrucciones ms-3 mb-5">
                     <li>Descargar el juego</li>
-                    <li>Descomprimir carpeta RAR</li>
-                    <li>Montar el archivo ISO</li>
-                    <li>Ejecutar el SETUP.EXE como administrador</li>
-                    <li>Ejecutar el juego</li>
-                    <li>Jugar 🙂</li>
+<li>Descomprimir carpeta RAR</li>
+<li>Iniciar sesión en STEAM</li>
+<li>Ejecutar el juego desde LAUNCHER.EXE</li>
+<li>Ya podra unirse a servidores y crear propios</li>
+<li>Jugar</li>
                 </ol>
 
-                <!-- BOTÓN DE DESCARGA (ÚNICO: UTORRENT) -->
+                
+
                 <div class="text-center p-4 bg-light border rounded-1">
-                    <h4 class="fw-bold mb-4">DESCARGAR JUEGO</h4>
-                    <a href="https://shrinkme.click/FHp7" class="btn btn-utorrent btn-lg fw-bold px-5 py-3">
-                        <i class="fa-solid fa-magnet me-2"></i> DESCARGAR POR UTORRENT
-                    </a>
+                    
+        <h4 class="fw-bold mb-4">DESCARGAR JUEGO</h4>
+        <a href="https://shrinkme.click/FHp7" target="_blank" class="btn btn-utorrent-verde btn-lg fw-bold px-5 py-3 mb-2">
+            <i class="fa-solid fa-magnet me-2"></i> DESCARGAR JUEGO BASE
+        </a>
+                    
+                    
                 </div>
 
             </div>
 
-            <!-- COLUMNA DERECHA: Banners -->
             <div class="col-lg-3 mt-4 mt-lg-0">
                 <div class="bg-dark text-white text-center p-4 rounded-1 h-100 d-flex flex-column justify-content-center align-items-center">
                     <p class="text-uppercase fw-bold text-muted mb-2">Espacio Publicitario</p>
-                    <h4 class="fw-bold">BANNER AQUI</h4>
+                    <h4 class="fw-bold">ESPACIO PUBLICITARIO</h4>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- FOOTER CORREGIDO Y COMPACTO -->
-    <footer class="bg-dark text-white mt-5 border-top border-danger border-3 mi-footer">
-        <div class="container">
+<footer class="bg-dark text-white mt-5 border-top border-danger border-3 mi-footer">
+        <div class="container py-4">
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold mb-2 text-uppercase fs-6">
@@ -225,18 +226,17 @@
                     <h5 class="fw-bold mb-2 text-uppercase fs-6">Enlaces Útiles</h5>
                     <ul class="list-unstyled text-light opacity-75 small mb-0">
                         <li class="mb-1"><a href="../index.html" class="text-decoration-none text-light link-hover">Inicio</a></li>
-                        <li class="mb-1"><a href="#" class="text-decoration-none text-light link-hover">Pedir un juego</a></li>
-                        <li class="mb-1"><a href="#" class="text-decoration-none text-light link-hover">Cómo descargar (Tutorial)</a></li>
-                        <li><a href="#" class="text-decoration-none text-light link-hover">DMCA / Reclamaciones</a></li>
+                        <li class="mb-1"><a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-decoration-none text-light link-hover">Pedir un juego</a></li>
+                        <li class="mb-1"><a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-decoration-none text-light link-hover">Cómo descargar (Tutorial)</a></li>
+                        <li><a href="../ayuda.html" class="text-decoration-none text-light link-hover">DMCA / Reclamaciones</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold mb-2 text-uppercase fs-6">Únete a la comunidad</h5>
                     <div class="d-flex gap-3 mt-2">
-                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-youtube hover-rojo"></i></a>
-                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-discord hover-rojo"></i></a>
-                        <a href="#" class="text-white fs-5"><i class="fa-brands fa-telegram hover-rojo"></i></a>
+                        <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5"><i class="fa-brands fa-youtube hover-rojo"></i></a>
+                        <a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-white fs-5"><i class="fa-brands fa-discord hover-rojo"></i></a>
                     </div>
                 </div>
             </div>
