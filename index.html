@@ -31,7 +31,8 @@
                         <ul class="dropdown-menu dropdown-menu-dark" style="min-width: 250px; max-height: 400px; overflow-y: auto;">
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=2d"><i class="fa-solid fa-gamepad me-2 text-muted"></i> 2D</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=accion"><i class="fa-solid fa-crosshairs me-2 text-danger"></i> Acción</a></li>
-                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=anime"><i class="fa-solid fa-khanda me-2 text-warning"></i> Anime</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=aventura"><i class="fa-solid fa-map-location-dot me-2 text-warning"></i> Aventura</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=anime"><i class="fa-solid fa-khanda me-2 text-warning"></i> Anime</a></li>                            
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=carreras"><i class="fa-solid fa-car-side me-2 text-primary"></i> Carreras</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=construccion"><i class="fa-solid fa-hammer me-2 text-info"></i> Construcción</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="index.html?cat=deportes"><i class="fa-solid fa-futbol me-2 text-success"></i> Deportes</a></li>
@@ -70,12 +71,12 @@
                 <div class="d-flex align-items-center gap-3 ms-lg-3 mt-3 mt-lg-0">
                     <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-youtube"></i></a>
                     <a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-discord"></i></a>
-                    <form action="index.html" method="GET" class="d-flex align-items-center m-0 ms-auto">
-                        <input class="form-control me-2 border-0 rounded-pill px-3 shadow-sm" type="search" name="buscar" placeholder="Buscar juego..." aria-label="Search" required>
-                        <button class="btn btn-dark rounded-pill px-3 shadow-sm" type="submit">
+                    <div class="d-flex align-items-center m-0 ms-auto position-relative">
+                        <input class="form-control me-2 border-0 rounded-pill px-3 shadow-sm" type="search" id="buscadorPrincipal" placeholder="Buscar juego..." aria-label="Search" onkeyup="filtrarEnTiempoReal()" onblur="verificarSalidaBuscador()">
+                        <button class="btn btn-dark rounded-pill px-3 shadow-sm" type="button">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,6 +87,90 @@
             <div class="col-lg-9">
         <h4 id="titulo-seccion" class="fw-bold text-uppercase mb-4 text-secondary"><i class="fa-solid fa-calendar-days me-2 text-danger"></i>Últimas Publicaciones</h4>                
                 <div class="row g-4">
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion,shooter,guerra" data-requisitos="medios">
+        <a href="juegos/call-of-duty-black-ops-2-deluxe-edition-pc-espaol.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/1785734488946-Call-of-Duty-Black-OPS-II-PiviGames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">CALL OF DUTY BLACK OPS 2 DELUXE EDITION PC ESPAÑOL</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Shooter, Guerra, Medios Requisitos</p>
+        </a>
+    </div>
+    
+
+    
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion,shooter,guerra" data-requisitos="altos">
+        <a href="juegos/call-of-duty-vanguard-pc-espaol.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/1785733888441-COD-Vanguard-Pivigames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">CALL OF DUTY VANGUARD PC ESPAÑOL</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Shooter, Guerra, Altos Requisitos</p>
+        </a>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion,shooter,guerra" data-requisitos="altos">
+        <a href="juegos/call-of-duty-modern-warfare-ii-pc-espaol-.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/1785733339234-Call-of-Duty-Modern-Warfare-II-Pivigames.webp" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">CALL OF DUTY MODERN WARFARE II PC ESPAÑOL </h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Shooter, Guerra, Altos Requisitos</p>
+        </a>
+    </div>
+    
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion,shooter,guerra" data-requisitos="altos">
+        <a href="juegos/call-of-duty-modern-warfare-iii-pc-espaol.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/1785732846587-call-of-duty-modern-warfare-iii-cross-gen-bundle-pivigames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">CALL OF DUTY MODERN WARFARE III PC ESPAÑOL</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Shooter, Guerra, Altos Requisitos</p>
+        </a>
+    </div>
+    
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion,shooter,guerra" data-requisitos="bajos">
+        <a href="juegos/call-of-duty-2-pc-espaol.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/1785732544962-call-of-duty-2-pc-juego-pivigames-768x432.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">CALL OF DUTY 2 PC ESPAÑOL</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Shooter, Guerra, Bajos Requisitos</p>
+        </a>
+    </div>
+    
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion,shooter" data-requisitos="altos">
+        <a href="juegos/call-of-duty-black-ops-6-para-pc-en-espaol.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/1785732020405-call-of-duty-black-ops-6-pc-game-battle-Pivigames.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">CALL OF DUTY BLACK OPS 6 PARA PC EN ESPAÑOL</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Shooter, Altos Requisitos</p>
+        </a>
+    </div>
+    
 <div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion,terror,multiplayer-online" data-requisitos="medios">
         <a href="juegos/the-mound-omen-of-cthulhu-pc-espaol--update-v35028--online-steam.html" class="text-decoration-none text-dark game-post">
             <div class="position-relative">
@@ -371,68 +456,57 @@
         const urlParams = new URLSearchParams(window.location.search);
         const catFiltrar = urlParams.get('cat');
         const reqFiltrar = urlParams.get('req');
-        const busqueda = urlParams.get('buscar');
+        const busquedaUrl = urlParams.get('buscar'); // Recuperamos la búsqueda por si vienen desde otra página
         let paginaActual = parseInt(urlParams.get('pagina')) || 1; 
         const juegosPorPagina = 6; 
+        let busquedaActiva = false;
 
         const normalizarTexto = (texto) => texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
-        document.addEventListener("DOMContentLoaded", () => {
+        // Diccionarios Globales
+        const iconosCategoria = {
+            "2d": { icono: "fa-gamepad", texto: "Juegos 2D", color: "text-muted" },
+            "accion": { icono: "fa-crosshairs", texto: "Acción", color: "text-danger" },
+            "aventura": { icono: "fa-map-location-dot", texto: "Aventura", color: "text-warning" },
+            "anime": { icono: "fa-khanda", texto: "Anime", color: "text-warning" },
+            "carreras": { icono: "fa-car-side", texto: "Carreras", color: "text-primary" },
+            "construccion": { icono: "fa-hammer", texto: "Construcción", color: "text-info" },
+            "deportes": { icono: "fa-futbol", texto: "Deportes", color: "text-success" },
+            "estrategia": { icono: "fa-chess-knight", texto: "Estrategia", color: "text-success" },
+            "shooter": { icono: "fa-gun", texto: "Shooter", color: "text-secondary" },
+            "guerra": { icono: "fa-jet-fighter", texto: "Guerra", color: "text-danger" },
+            "lucha": { icono: "fa-hand-fist", texto: "Lucha", color: "text-warning" },
+            "rol": { icono: "fa-wand-magic-sparkles", texto: "Rol", color: "text-info" },
+            "simulacion": { icono: "fa-tractor", texto: "Simulación", color: "text-light" },
+            "supervivencia": { icono: "fa-mask-ventilator", texto: "Supervivencia", color: "text-light" },
+            "terror": { icono: "fa-ghost", texto: "Terror", color: "text-secondary" },
+            "zombies": { icono: "fa-biohazard", texto: "Zombies", color: "text-success" },
+            "mundo-abierto": { icono: "fa-earth-americas", texto: "Mundo Abierto", color: "text-primary" },
+            "multiplayer-online": { icono: "fa-globe", texto: "Multiplayer Online", color: "text-warning" },
+            "pantalla-dividida": { icono: "fa-users", texto: "Pantalla Dividida", color: "text-info" },
+            "pixelados": { icono: "fa-border-all", texto: "Pixelados", color: "text-muted" }
+        };
+
+        const iconosReq = {
+            "bajos": { icono: "fa-battery-quarter", texto: "Bajos Requisitos", color: "text-success" },
+            "medios": { icono: "fa-battery-half", texto: "Medios Requisitos", color: "text-warning" },
+            "altos": { icono: "fa-battery-full", texto: "Altos Requisitos", color: "text-danger" }
+        };
+
+        // Función Núcleo para renderizar la paginación base de la URL
+        function renderizarPaginaBase() {
             const tarjetas = document.querySelectorAll(".juego-tarjeta");
-            const tituloSeccion = document.getElementById("titulo-seccion");
-
-            const iconosCategoria = {
-                "2d": { icono: "fa-gamepad", texto: "Juegos 2D", color: "text-muted" },
-                "accion": { icono: "fa-crosshairs", texto: "Acción", color: "text-danger" },
-                "anime": { icono: "fa-khanda", texto: "Anime", color: "text-warning" },
-                "carreras": { icono: "fa-car-side", texto: "Carreras", color: "text-primary" },
-                "construccion": { icono: "fa-hammer", texto: "Construcción", color: "text-info" },
-                "deportes": { icono: "fa-futbol", texto: "Deportes", color: "text-success" },
-                "estrategia": { icono: "fa-chess-knight", texto: "Estrategia", color: "text-success" },
-                "shooter": { icono: "fa-gun", texto: "Shooter", color: "text-secondary" },
-                "guerra": { icono: "fa-jet-fighter", texto: "Guerra", color: "text-danger" },
-                "lucha": { icono: "fa-hand-fist", texto: "Lucha", color: "text-warning" },
-                "rol": { icono: "fa-wand-magic-sparkles", texto: "Rol", color: "text-info" },
-                "simulacion": { icono: "fa-tractor", texto: "Simulación", color: "text-light" },
-                "supervivencia": { icono: "fa-mask-ventilator", texto: "Supervivencia", color: "text-light" },
-                "terror": { icono: "fa-ghost", texto: "Terror", color: "text-secondary" },
-                "zombies": { icono: "fa-biohazard", texto: "Zombies", color: "text-success" },
-                "mundo-abierto": { icono: "fa-earth-americas", texto: "Mundo Abierto", color: "text-primary" },
-                "multiplayer-online": { icono: "fa-globe", texto: "Multiplayer Online", color: "text-warning" },
-                "pantalla-dividida": { icono: "fa-users", texto: "Pantalla Dividida", color: "text-info" },
-                "pixelados": { icono: "fa-border-all", texto: "Pixelados", color: "text-muted" }
-            };
-
-            const iconosReq = {
-                "bajos": { icono: "fa-battery-quarter", texto: "Bajos Requisitos", color: "text-success" },
-                "medios": { icono: "fa-battery-half", texto: "Medios Requisitos", color: "text-warning" },
-                "altos": { icono: "fa-battery-full", texto: "Altos Requisitos", color: "text-danger" }
-            };
-
-            if (tituloSeccion) {
-                if (catFiltrar && iconosCategoria[catFiltrar]) {
-                    const cat = iconosCategoria[catFiltrar];
-                    tituloSeccion.innerHTML = `<i class="fa-solid ${cat.icono} me-2 ${cat.color}"></i>${cat.texto}`;
-                } else if (reqFiltrar && iconosReq[reqFiltrar]) {
-                    const req = iconosReq[reqFiltrar];
-                    tituloSeccion.innerHTML = `<i class="fa-solid ${req.icono} me-2 ${req.color}"></i>Juegos de ${req.texto}`;
-                } else if (busqueda) {
-                    tituloSeccion.innerHTML = `<i class="fa-solid fa-magnifying-glass me-2 text-info"></i>Resultados para: "${busqueda}"`;
-                }
-            }
-
+            const contenedorPaginacion = document.getElementById("paginacion");
+            const mensajeVacio = document.getElementById("mensaje-sin-resultados");
             let tarjetasFiltradas = [];
 
             tarjetas.forEach(tarjeta => {
                 const tarjetaCats = tarjeta.getAttribute("data-categoria").split(",");
                 const tarjetaReq = tarjeta.getAttribute("data-requisitos");
-                const tarjetaTitulo = normalizarTexto(tarjeta.querySelector("h6").innerText);
 
                 let coincide = true;
-
                 if (catFiltrar && !tarjetaCats.includes(catFiltrar.toLowerCase())) coincide = false;
                 if (reqFiltrar && tarjetaReq !== reqFiltrar.toLowerCase()) coincide = false;
-                if (busqueda && !tarjetaTitulo.includes(normalizarTexto(busqueda))) coincide = false;
 
                 tarjeta.style.setProperty("display", "none", "important");
 
@@ -441,34 +515,159 @@
                 }
             });
 
+            // Si no hay juegos en esta categoría/filtro
+            if (tarjetasFiltradas.length === 0) {
+                if (mensajeVacio) mensajeVacio.style.display = "block";
+                if (contenedorPaginacion) contenedorPaginacion.innerHTML = "";
+                return;
+            } else {
+                if (mensajeVacio) mensajeVacio.style.display = "none";
+            }
+
             const totalPaginas = Math.ceil(tarjetasFiltradas.length / juegosPorPagina);
-            
             if (paginaActual < 1) paginaActual = 1;
             if (paginaActual > totalPaginas && totalPaginas > 0) paginaActual = totalPaginas;
 
             const indiceInicio = (paginaActual - 1) * juegosPorPagina;
             const indiceFin = indiceInicio + juegosPorPagina;
 
-            const tarjetasAMostrar = tarjetasFiltradas.slice(indiceInicio, indiceFin);
-            tarjetasAMostrar.forEach(tarjeta => {
+            tarjetasFiltradas.slice(indiceInicio, indiceFin).forEach(tarjeta => {
                 tarjeta.style.display = "block";
-                
-                // Ocultar la etiqueta "NUEVO" si no es la primera página
-                const etiquetaNuevo = tarjeta.querySelector('.badge.bg-warning');
-                if (etiquetaNuevo) {
-                    if (paginaActual === 1) {
-                        etiquetaNuevo.style.display = ""; 
-                    } else {
-                        etiquetaNuevo.style.display = "none"; 
+            });
+
+            generarPaginacion(totalPaginas, paginaActual);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const tarjetas = document.querySelectorAll(".juego-tarjeta");
+            const tituloSeccion = document.getElementById("titulo-seccion");
+            const inputBuscador = document.getElementById('buscadorPrincipal');
+            const contenedorJuegos = document.querySelector(".row.g-4");
+
+            // --- INYECTAR MENSAJE DE "NO RESULTADOS" OCULTO EN EL HTML ---
+            if (contenedorJuegos && !document.getElementById("mensaje-sin-resultados")) {
+                const msjDiv = document.createElement("div");
+                msjDiv.id = "mensaje-sin-resultados";
+                msjDiv.className = "col-12 text-center mt-5 mb-5 fade-in";
+                msjDiv.style.display = "none";
+                msjDiv.innerHTML = `
+                    <i class="fa-solid fa-ghost text-secondary mb-3" style="font-size: 4.5rem; opacity: 0.5;"></i>
+                    <h4 class="fw-bold text-danger text-uppercase">No existen coincidencias con tu búsqueda</h4>
+                    <p class="text-muted fw-semibold">Verifica el nombre e inténtalo nuevamente.</p>
+                `;
+                contenedorJuegos.appendChild(msjDiv);
+            }
+
+            // 1. REGLA GLOBAL: ETIQUETA NUEVO
+            tarjetas.forEach((tarjeta, indexGlobal) => {
+                if (indexGlobal >= 6) {
+                    const etiquetaNuevo = tarjeta.querySelector('.badge.bg-warning');
+                    if (etiquetaNuevo) {
+                        etiquetaNuevo.style.setProperty("display", "none", "important");
                     }
                 }
             });
 
-            generarPaginacion(totalPaginas, paginaActual);
+            // 2. CONFIGURAR INICIO (¿Viene de una búsqueda desde otra página?)
+            if (busquedaUrl && inputBuscador) {
+                inputBuscador.value = busquedaUrl;
+                filtrarEnTiempoReal(); // Ejecutamos la búsqueda instantánea
+            } else {
+                // Títulos normales
+                if (tituloSeccion) {
+                    if (catFiltrar && iconosCategoria[catFiltrar]) {
+                        const cat = iconosCategoria[catFiltrar];
+                        tituloSeccion.innerHTML = `<i class="fa-solid ${cat.icono} me-2 ${cat.color}"></i>${cat.texto}`;
+                    } else if (reqFiltrar && iconosReq[reqFiltrar]) {
+                        const req = iconosReq[reqFiltrar];
+                        tituloSeccion.innerHTML = `<i class="fa-solid ${req.icono} me-2 ${req.color}"></i>Juegos de ${req.texto}`;
+                    }
+                }
+                renderizarPaginaBase();
+            }
         });
 
+        // --- FUNCIÓN EN TIEMPO REAL AL ESCRIBIR ---
+        function filtrarEnTiempoReal() {
+            const contenedorPaginacion = document.getElementById("paginacion");
+            const tituloSeccion = document.getElementById("titulo-seccion");
+            const tarjetas = document.querySelectorAll(".juego-tarjeta");
+            const inputBuscador = document.getElementById('buscadorPrincipal');
+            const mensajeVacio = document.getElementById("mensaje-sin-resultados");
+            const texto = normalizarTexto(inputBuscador.value);
+
+            // Si el usuario vacía la caja, restauramos la vista original limpia
+            if (texto === "") {
+                if (tituloSeccion) {
+                    if (catFiltrar && iconosCategoria[catFiltrar]) {
+                        const cat = iconosCategoria[catFiltrar];
+                        tituloSeccion.innerHTML = `<i class="fa-solid ${cat.icono} me-2 ${cat.color}"></i>${cat.texto}`;
+                    } else if (reqFiltrar && iconosReq[reqFiltrar]) {
+                        const req = iconosReq[reqFiltrar];
+                        tituloSeccion.innerHTML = `<i class="fa-solid ${req.icono} me-2 ${req.color}"></i>Juegos de ${req.texto}`;
+                    } else {
+                        tituloSeccion.innerHTML = `<i class="fa-solid fa-calendar-days me-2 text-danger"></i>Últimas Publicaciones`;
+                    }
+                }
+                renderizarPaginaBase();
+                return;
+            }
+
+            busquedaActiva = true;
+
+            if (tituloSeccion) {
+                tituloSeccion.innerHTML = `<i class="fa-solid fa-magnifying-glass me-2 text-info"></i>Buscando: "${inputBuscador.value}"`;
+            }
+
+            // Desactivamos la paginación temporalmente
+            if (contenedorPaginacion) contenedorPaginacion.innerHTML = "";
+
+            let coincidencias = 0;
+
+            tarjetas.forEach(tarjeta => {
+                const tarjetaCats = tarjeta.getAttribute("data-categoria").split(",");
+                const tarjetaReq = tarjeta.getAttribute("data-requisitos");
+                const tarjetaTitulo = normalizarTexto(tarjeta.querySelector("h6").innerText);
+                
+                let coincide = tarjetaTitulo.includes(texto);
+
+                if (catFiltrar && !tarjetaCats.includes(catFiltrar.toLowerCase())) coincide = false;
+                if (reqFiltrar && tarjetaReq !== reqFiltrar.toLowerCase()) coincide = false;
+
+                if (coincide) {
+                    tarjeta.style.setProperty("display", "block", "important");
+                    coincidencias++;
+                } else {
+                    tarjeta.style.setProperty("display", "none", "important");
+                }
+            });
+
+            // Mostramos u ocultamos el mensaje dependiendo de si hubo resultados
+            if (mensajeVacio) {
+                if (coincidencias === 0) {
+                    mensajeVacio.style.display = "block";
+                } else {
+                    mensajeVacio.style.display = "none";
+                }
+            }
+        }
+
+        // --- FUNCIÓN AL SALIR DE LA CAJA ---
+        function verificarSalidaBuscador() {
+            const texto = document.getElementById('buscadorPrincipal').value.trim();
+            if (texto === "" && busquedaActiva) {
+                setTimeout(() => {
+                    const url = new URL(window.location);
+                    url.searchParams.delete('buscar');
+                    window.location.href = url.pathname + url.search;
+                }, 200);
+            }
+        }
+
+        // --- CONSTRUCCIÓN DE BOTONES DE PAGINACIÓN ---
         function generarPaginacion(totalPaginas, actual) {
             const paginacionUl = document.getElementById("paginacion");
+            if (!paginacionUl) return;
             paginacionUl.innerHTML = ""; 
 
             if (totalPaginas <= 1) return;

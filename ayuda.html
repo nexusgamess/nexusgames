@@ -106,7 +106,7 @@
                                 <input class="form-control border-nexus" list="lista-juegos" id="juegoSeleccionado" placeholder="Escribe o selecciona un juego..." required>
                                 <datalist id="lista-juegos">
                                     <option value="Consulta General / Otro"></option>
-                                    </datalist>
+                                </datalist>
                             </div>
 
                             <div class="mb-3">
@@ -126,7 +126,7 @@
                 <div class="card shadow-sm border-0 rounded-3">
                     <div class="card-header bg-dark text-white fw-bold d-flex justify-content-between align-items-center">
                         <span><i class="fa-solid fa-comments text-nexus me-2"></i> COMENTARIOS RECIENTES</span>
-                        <span class="badge badge-nexus" id="contadorComentarios">0 Comentarios</span>
+                        <span class="badge badge-nexus" id="contadorComentarios">Nuevos Comentarios en Discord</span>
                     </div>
                     <div class="card-body p-4 bg-light" id="listaComentarios" style="max-height: 600px; overflow-y: auto;">
                         </div>
@@ -136,126 +136,87 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalDiscordAyuda" tabindex="-1" aria-labelledby="modalDiscordAyudaLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-danger shadow-lg">
+                <div class="modal-header border-danger">
+                    <h5 class="modal-title fw-bold text-danger text-uppercase" id="modalDiscordAyudaLabel">
+                        <i class="fa-solid fa-circle-check me-2"></i>¡Comentario Enviado!
+                    </h5>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <i class="fa-brands fa-discord mb-3 text-info" style="font-size: 4rem;"></i>
+                    <h5 class="fw-semibold px-2 mb-3">PARA RECIBIR TU AYUDA O UNA RESPUESTA A TU CONSULTA, INGRESA A NUESTRO CANAL DE DISCORD</h5>
+                </div>
+                <div class="modal-footer border-danger d-flex justify-content-center">
+                    <a href="https://discord.gg/K5xKACqWQ" target="_blank" class="btn btn-info rounded-pill px-4 fw-bold shadow-sm" onclick="cerrarYResetearModal()">
+                        <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Ir a Discord
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="bg-dark text-white text-center py-3 mt-auto">
         <p class="mb-0 text-muted small">&copy; 2026 NexusGames. Todos los derechos reservados.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            
-            // --- CARGAR LISTA DE JUEGOS DINÁMICAMENTE ---
-            fetch('/api/juegos')
-                .then(response => response.json())
-                .then(juegos => {
-                    const dataList = document.getElementById('lista-juegos');
-                    juegos.forEach(juego => {
-                        const option = document.createElement('option');
-                        option.value = juego.titulo;
-                        dataList.appendChild(option);
+        const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1533736944129806368/fv9PpKuBZbe2mR2373zdL1W9rWhlp6LYyoUL9oMrK-kHd6e4QafMCAl5wTmzLmsPdXwd";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Utilizamos el ID correcto de tu HTML
+            const formComentario = document.getElementById("formComentario");
+
+            if (formComentario) {
+                formComentario.addEventListener("submit", function (e) {
+                    e.preventDefault(); 
+
+                    // Utilizamos los IDs correctos de tus inputs
+                    const nombre = document.getElementById("nombreUsuario").value.trim() || "Anónimo";
+                    const juego = document.getElementById("juegoSeleccionado").value.trim() || "No especificado";
+                    const mensaje = document.getElementById("mensajeComentario").value.trim() || "Sin contenido";
+
+                    const discordPayload = {
+                        embeds: [{
+                            title: `📩 Nueva Consulta: ${juego}`,
+                            color: 13959168, // Código decimal de tu #D50000
+                            fields: [
+                                { name: "👤 Usuario / Apodo", value: nombre, inline: true },
+                                { name: "🎮 Juego", value: juego, inline: true },
+                                { name: "💬 Problema o duda", value: mensaje }
+                            ],
+                            timestamp: new Date().toISOString(),
+                            footer: { text: "NexusGames System" }
+                        }]
+                    };
+
+                    fetch(DISCORD_WEBHOOK_URL, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(discordPayload)
+                    })
+                    .then(() => {
+                        formComentario.reset(); 
+                        const modalAyuda = new bootstrap.Modal(document.getElementById('modalDiscordAyuda'));
+                        modalAyuda.show();
+                    })
+                    .catch(err => {
+                        console.error("Error al enviar el webhook:", err);
+                        alert("Hubo un problema de conexión. Por favor, intenta de nuevo.");
                     });
-                })
-                .catch(error => console.error('Error al cargar la lista de juegos:', error));
-
-            // --- LÓGICA DE COMENTARIOS ---
-            const formComentario = document.getElementById('formComentario');
-            const listaComentarios = document.getElementById('listaComentarios');
-            const contadorComentarios = document.getElementById('contadorComentarios');
-
-            let comentarios = JSON.parse(localStorage.getItem('nexus_comentarios')) || [];
-
-            function guardarComentarios() {
-                localStorage.setItem('nexus_comentarios', JSON.stringify(comentarios));
-            }
-
-            function renderizarComentarios() {
-                listaComentarios.innerHTML = "";
-                let total = comentarios.length;
-                comentarios.forEach(c => total += c.respuestas.length);
-                contadorComentarios.textContent = `${total} Comentarios`;
-
-                comentarios.forEach((com) => {
-                    let respuestasHTML = "";
-                    com.respuestas.forEach((resp) => {
-                        respuestasHTML += `
-                            <div class="bg-white p-3 rounded-3 mt-2 border-start border-nexus border-3 shadow-sm">
-                                <div class="d-flex justify-content-between">
-                                    <span class="fw-bold text-nexus" style="font-size: 0.9rem;"><i class="fa-solid fa-reply me-1"></i> ${resp.nombre}</span>
-                                    <small class="text-muted" style="font-size: 0.7rem;">${resp.fecha}</small>
-                                </div>
-                                <p class="mb-0 text-dark small">${resp.mensaje}</p>
-                            </div>
-                        `;
-                    });
-
-                    const tarjetaHTML = `
-                        <div class="card mb-3 border-0 shadow-sm">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="fw-bold text-dark mb-1"><i class="fa-solid fa-circle-user text-muted me-1"></i> ${com.nombre}</h6>
-                                    <small class="text-muted" style="font-size: 0.7rem;">${com.fecha}</small>
-                                </div>
-                                <span class="badge badge-nexus mb-2" style="font-size: 0.7rem;">${com.juego}</span>
-                                <p class="card-text text-dark mb-2" style="font-size: 0.95rem;">${com.mensaje}</p>
-                                
-                                <div class="text-end">
-                                    <button class="btn btn-sm btn-outline-nexus" onclick="toggleFormRespuesta(${com.id})">Responder</button>
-                                </div>
-
-                                <div class="respuestas-contenedor">
-                                    ${respuestasHTML}
-                                </div>
-
-                                <div id="form-resp-${com.id}" class="d-none mt-3 p-3 bg-white border rounded">
-                                    <input type="text" id="nombre-resp-${com.id}" class="form-control form-control-sm mb-2" placeholder="Tu Nombre">
-                                    <textarea id="msg-resp-${com.id}" class="form-control form-control-sm mb-2" rows="2" placeholder="Tu respuesta..."></textarea>
-                                    <div class="text-end">
-                                        <button class="btn btn-sm btn-nexus" onclick="agregarRespuesta(${com.id})">Enviar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    listaComentarios.innerHTML += tarjetaHTML;
                 });
             }
-
-            formComentario.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const nuevoComentario = {
-                    id: Date.now(),
-                    nombre: document.getElementById('nombreUsuario').value,
-                    juego: document.getElementById('juegoSeleccionado').value,
-                    mensaje: document.getElementById('mensajeComentario').value,
-                    fecha: new Date().toLocaleString(),
-                    respuestas: []
-                };
-                comentarios.unshift(nuevoComentario);
-                guardarComentarios();
-                renderizarComentarios();
-                formComentario.reset();
-            });
-
-            window.toggleFormRespuesta = function(id) {
-                document.getElementById(`form-resp-${id}`).classList.toggle('d-none');
-            };
-
-            window.agregarRespuesta = function(id) {
-                const nombre = document.getElementById(`nombre-resp-${id}`).value;
-                const mensaje = document.getElementById(`msg-resp-${id}`).value;
-                if(!nombre || !mensaje) return alert("Completa los campos");
-
-                const com = comentarios.find(c => c.id === id);
-                com.respuestas.push({
-                    nombre: nombre,
-                    mensaje: mensaje,
-                    fecha: new Date().toLocaleString()
-                });
-                guardarComentarios();
-                renderizarComentarios();
-            };
-
-            renderizarComentarios();
         });
+
+        function cerrarYResetearModal() {
+            const modalElement = document.getElementById('modalDiscordAyuda');
+            // Buscamos la instancia activa o creamos una nueva para ocultarla correctamente
+            const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+            modalInstance.hide();
+        }
     </script>
 </body>
 </html>

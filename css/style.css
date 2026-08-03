@@ -80,3 +80,4 @@ body {
     object-fit: cover;    /* Recorta la imagen para que llene la caja sin deformarse */
     object-position: top; /* Prioriza la parte de arriba de la carátula si hay que recortar */
 }
+
