@@ -81,3 +81,184 @@ body {
     object-position: top; /* Prioriza la parte de arriba de la carátula si hay que recortar */
 }
 
+/* =========================================
+   NUEVO TEMA CYBERPUNK - NEXUSGAMES
+========================================= */
+
+/* 1. Fondo General Oscuro con ligero resplandor */
+body {
+    background-color: #0b0e14 !important; /* Azul marino casi negro */
+    color: #e0e0e0 !important;
+    background-image: radial-gradient(circle at 50% 0%, #1a2235 0%, #0b0e14 60%);
+    background-attachment: fixed;
+}
+
+/* 2. Barra de Navegación */
+.navbar {
+    background-color: #06080b !important;
+    border-bottom: 1px solid #1a1a1a;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+.navbar .nav-link {
+    color: #888 !important;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.navbar .nav-link:hover, 
+.navbar .nav-link.active {
+    color: #fff !important;
+    border-bottom: 2px solid #ff003c !important; /* Subrayado rojo neón */
+}
+
+/* 3. Buscador Cyan Neón */
+#buscadorPrincipal {
+    background-color: rgba(0, 240, 255, 0.05) !important;
+    border: 1px solid #00f0ff !important;
+    color: #fff !important;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2), inset 0 0 5px rgba(0, 240, 255, 0.1) !important;
+}
+#buscadorPrincipal::placeholder {
+    color: rgba(0, 240, 255, 0.6) !important;
+}
+#buscadorPrincipal:focus {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(0, 240, 255, 0.2) !important;
+    outline: none;
+}
+/* Botón de la lupa */
+.btn-dark {
+    background-color: transparent !important;
+    border: 1px solid #00f0ff !important;
+    color: #00f0ff !important;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2) !important;
+}
+
+/* 4. Tarjetas de los Juegos (Cyan Borders) */
+.juego-tarjeta .card {
+    background-color: #111622 !important;
+    border: 1px solid #00f0ff !important;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.juego-tarjeta .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+/* Textos de la tarjeta */
+.juego-tarjeta h6, .juego-tarjeta .card-title {
+    color: #ffffff !important;
+    font-weight: bold;
+}
+.juego-tarjeta .text-muted {
+    color: #9ab !important; /* Gris azulado para que no se pierda */
+}
+
+/* 5. Botón DESCARGAR AHORA (Red Glow) */
+.juego-tarjeta .btn, .btn-descargar-neon {
+    background-color: transparent !important;
+    border: 1px solid #ff003c !important;
+    color: #fff !important;
+    border-radius: 20px !important;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.3), inset 0 0 5px rgba(255, 0, 60, 0.1) !important;
+    transition: 0.3s;
+}
+.juego-tarjeta .btn:hover, .btn-descargar-neon:hover {
+    background-color: rgba(255, 0, 60, 0.1) !important;
+    box-shadow: 0 0 15px rgba(255, 0, 60, 0.6), inset 0 0 10px rgba(255, 0, 60, 0.3) !important;
+}
+
+/* 6. Paginación Cyber */
+.pagination .page-link {
+    background-color: #111622 !important;
+    border: 1px solid #222 !important;
+    color: #aaa !important;
+}
+.pagination .page-item.active .page-link,
+.pagination .page-link:hover {
+    background-color: transparent !important;
+    border: 1px solid #ff003c !important;
+    color: #fff !important;
+    box-shadow: 0 0 10px rgba(255, 0, 60, 0.5) !important;
+}
+
+/* Marco de la Imagen/Video Derecha (Cyan Neón) */
+.marco-cyber {
+    border: 2px solid #00f0ff;
+    border-radius: 12px;
+    padding: 0px; /* Quitamos el padding para que el video llene el borde */
+    background-color: #0b0e14 !important; /* Mismo fondo oscuro de la página */
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.2);
+    position: relative;
+    overflow: hidden; /* Evita que el video se salga de las esquinas redondeadas */
+}
+
+/* Adornos de las esquinas del marco */
+.marco-cyber::before, .marco-cyber::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00f0ff;
+    z-index: 2;
+}
+.marco-cyber::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.marco-cyber::after { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+
+/* =========================================
+   ALINEACIÓN PERFECTA DE TARJETAS (INDEX)
+========================================= */
+
+/* 1. Hacemos que la columna se expanda para igualar las alturas */
+.juego-tarjeta {
+    display: flex;
+}
+
+/* 2. Convertimos la tarjeta en un contenedor Flex Cyberpunk */
+.juego-tarjeta .game-post {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: #111622 !important; /* Fondo oscuro */
+    border: 1px solid #00f0ff !important; /* Borde de Neón Cyan */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.juego-tarjeta .game-post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+/* 3. Aseguramos que todas las miniaturas tengan el mismo alto exacto (Molde uniforme) */
+.juego-tarjeta .game-post img.portada-tarjeta {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Recorta sin deformar */
+    border-radius: 6px;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+/* 4. Estilos de los textos */
+.juego-tarjeta .game-post h6 {
+    color: #ffffff !important;
+    margin-top: 15px;
+    font-size: 0.95rem;
+}
+
+/* 5. EL TRUCO MÁGICO: Este texto crece como un resorte y empuja el botón al fondo */
+.juego-tarjeta .game-post p.text-muted {
+    flex-grow: 1; 
+    color: #9ab !important;
+    margin-bottom: 20px;
+}
+
+/* 6. Contenedor del botón anclado estrictamente en la base */
+.juego-tarjeta .game-post .text-center {
+    margin-top: auto !important;
+}

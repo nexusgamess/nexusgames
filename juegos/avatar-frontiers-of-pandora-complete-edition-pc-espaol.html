@@ -9,23 +9,38 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="imagenes/IDENTIDAD.png">
     <style>
-        .seccion-titulo { color: #ff5722; text-transform: uppercase; border-bottom: 2px solid #ff5722; display: inline-block; padding-bottom: 5px; margin-bottom: 25px; }
+        body {
+            background-color: #0b0e14 !important;
+            color: #e0e0e0 !important;
+            background-image: radial-gradient(circle at 50% 0%, #1a2235 0%, #0b0e14 60%);
+            background-attachment: fixed;
+        }
+        .seccion-titulo { color: #ff003c; text-transform: uppercase; border-bottom: 2px solid #ff003c; display: inline-block; padding-bottom: 5px; margin-bottom: 25px; font-weight: bold; }
         .lista-cuadrada { list-style-type: square; }
         .lista-cuadrada li, .lista-requisitos li { margin-bottom: 10px; }
         .lista-instrucciones li { margin-bottom: 12px; font-size: 1.1rem; }
         
-        /* COLORES DE PLATAFORMAS */
-        .btn-mega { background-color: #e32221 !important; border-color: #e32221 !important; color: white !important; }
-        .btn-mega:hover { background-color: #c71b1b !important; }
-        .btn-mediafire { background-color: #0072ff !important; border-color: #0072ff !important; color: white !important; }
-        .btn-mediafire:hover { background-color: #005bb5 !important; }
-        .btn-drive { background-color: #1fa463 !important; border-color: #1fa463 !important; color: white !important; }
-        .btn-drive:hover { background-color: #177d4c !important; }
-        .btn-torrent { background-color: #5cb85c !important; border-color: #5cb85c !important; color: white !important; }
-        .btn-torrent:hover { background-color: #4cae4c !important; }
+        .card-cyber {
+            background-color: #111622 !important;
+            border: 1px solid #00f0ff !important;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+            border-radius: 8px;
+        }
+        .portada-juego {
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            width: 100%;
+            max-width: 750px;
+            height: 420px;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 6px;
+        }
     </style>
 </head>
-<body class="bg-light">
+<body>
 
     <nav class="navbar navbar-expand-lg custom-navbar py-2">
         <div class="container">
@@ -48,7 +63,7 @@
                             <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=2d"><i class="fa-solid fa-gamepad me-2 text-muted"></i> 2D</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=accion"><i class="fa-solid fa-crosshairs me-2 text-danger"></i> Acción</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=aventura"><i class="fa-solid fa-map-location-dot me-2 text-warning"></i> Aventura</a></li> 
-                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=anime"><i class="fa-solid fa-khanda me-2 text-warning"></i> Anime</a></li>                          
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=anime"><i class="fa-solid fa-khanda me-2 text-warning"></i> Anime</a></li>                           
                             <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=carreras"><i class="fa-solid fa-car-side me-2 text-primary"></i> Carreras</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=construccion"><i class="fa-solid fa-hammer me-2 text-info"></i> Construcción</a></li>
                             <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=deportes"><i class="fa-solid fa-futbol me-2 text-success"></i> Deportes</a></li>
@@ -87,10 +102,12 @@
                 <div class="d-flex align-items-center gap-3 ms-lg-3 mt-3 mt-lg-0">
                     <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-youtube"></i></a>
                     <a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-discord"></i></a>
-                    <form action="../index.html" method="GET" class="d-flex align-items-center m-0 ms-auto">
-                        <input class="form-control me-2 border-0 rounded-pill px-3 shadow-sm" type="search" name="buscar" placeholder="Buscar juego..." aria-label="Search" required>
-                        <button class="btn btn-dark rounded-pill px-3 shadow-sm" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>
+                    <div class="d-flex align-items-center m-0 ms-auto position-relative">
+                        <input class="form-control me-2 border-0 rounded-pill px-3 shadow-sm" type="search" id="buscadorPrincipal" placeholder="Buscar juego..." aria-label="Search" onkeyup="filtrarEnTiempoReal()" onblur="verificarSalidaBuscador()">
+                        <button class="btn btn-dark rounded-pill px-3 shadow-sm" type="button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,62 +117,61 @@
         <nav aria-label="breadcrumb" class="mb-3">
             <ol class="breadcrumb" style="font-size: 0.85rem;">
                 <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-muted">Inicio</a></li>
-                <li class="breadcrumb-item active fw-bold text-dark" aria-current="page">AVATAR: FRONTIERS OF PANDORA COMPLETE EDITION PC ESPAÑOL</li>
+                <li class="breadcrumb-item active fw-bold text-white" aria-current="page">AVATAR: FRONTIERS OF PANDORA COMPLETE EDITION PC ESPAÑOL</li>
             </ol>
         </nav>
 
         <div class="row">
-            <div class="col-lg-9 bg-white p-4 shadow-sm rounded-1 border">
-                <h1 class="h3 fw-bold mb-4 text-uppercase text-center">AVATAR: FRONTIERS OF PANDORA COMPLETE EDITION PC ESPAÑOL</h1>
-                <img src="imagenes/1785814770121-8c35a1cfc0715721da47fbeaef97d183.jpg" class="rounded-1 mb-4 shadow-sm portada-juego" alt="Portada del Juego">
+            <div class="col-lg-9 card-cyber p-4 border">
+                <h1 class="h3 fw-bold mb-4 text-uppercase text-center text-white">AVATAR: FRONTIERS OF PANDORA COMPLETE EDITION PC ESPAÑOL</h1>
+                <img src="imagenes/1785814770121-8c35a1cfc0715721da47fbeaef97d183.jpg" class="mb-4 shadow-sm portada-juego" alt="Portada del Juego">
 
-                <div class="px-2 mb-5"><p class="text-muted" style="font-size: 1.05rem; line-height: 1.7;">Avatar: Frontiers of Pandora – Complete Edition es un juego de acción y aventura en primera persona ambientado en el impresionante universo de Avatar. Explora la inmensa Frontera Occidental de Pandora, un mundo abierto repleto de exuberantes selvas, montañas flotantes y criaturas extraordinarias. Como un Na'vi criado por la RDA, deberás redescubrir tus raíces, dominar las habilidades de tu pueblo y luchar para proteger Pandora de la explotación humana. La Complete Edition incluye el juego base junto con todas las expansiones y contenido adicional, ofreciendo la experiencia más completa.</p></div>
+                <div class="px-2 mb-5"><p style="font-size: 1.05rem; line-height: 1.7; color: #b0b5c0;">Avatar: Frontiers of Pandora – Complete Edition es un juego de acción y aventura en primera persona ambientado en el impresionante universo de Avatar. Explora la inmensa Frontera Occidental de Pandora, un mundo abierto repleto de exuberantes selvas, montañas flotantes y criaturas extraordinarias. Como un Na'vi criado por la RDA, deberás redescubrir tus raíces, dominar las habilidades de tu pueblo y luchar para proteger Pandora de la explotación humana. La Complete Edition incluye el juego base junto con todas las expansiones y contenido adicional, ofreciendo la experiencia más completa.</p></div>
 
                 <div class="text-center"><h3 class="seccion-titulo">Ficha Técnica</h3></div>
-                <ul class="lista-cuadrada fs-6 ms-3 mb-5">
+                <ul class="lista-cuadrada fs-6 ms-3 mb-5 text-white">
                     <li><strong>PLATAFORMA:</strong> PC</li>
                     <li><strong>PESO TOTAL:</strong> 107 GB</li>
                     <li><strong>FORMATO:</strong> ISO ELAMIGOS</li>
-                    <li><strong>FECHA DE ACTUALIZACIÓN:</strong> <span class="text-danger">04/08/26</span></li>
+                    <li><strong>FECHA DE ACTUALIZACIÓN:</strong> <span class="text-danger fw-bold">04/08/26</span></li>
                     <li><strong>CATEGORÍAS:</strong> Acción, Aventura, Shooter, Mundo Abierto</li>
                     <li><strong>TEXTOS:</strong> Español, Inglés, Francés, Italiano, Alemán, Portugués (Brasil), Polaco, Ruso, Japonés, Coreano, Chino Simplificado, Chino Tradicional</li>
                     <li><strong>AUDIO:</strong> Inglés, Francés, Italiano, Alemán, Español (España), Portugués (Brasil), Japonés</li>
                 </ul>
 
                 <div class="text-center"><h3 class="seccion-titulo">Gameplay Trailer</h3></div>
-                <div class="ratio ratio-16x9 mb-5"><iframe src="https://www.youtube.com/embed/RDzw1EKnaIA" allowfullscreen></iframe></div>
+                <div class="ratio ratio-16x9 mb-5 border border-secondary rounded shadow-sm"><iframe src="https://www.youtube.com/embed/RDzw1EKnaIA" allowfullscreen></iframe></div>
 
                 <div class="text-center"><h3 class="seccion-titulo">Requisitos del Sistema</h3></div>
-                <div class="mb-5">
-                    <p class="fs-5 mb-3">MÍNIMOS:</p>
+                <div class="mb-5 text-white">
+                    <p class="fs-5 mb-3 text-danger fw-bold">MÍNIMOS:</p>
                     <ul class="lista-cuadrada lista-requisitos ms-3 mb-4">
                         <li><strong>SO:</strong> Windows 10 / 11 (64 bits)</li><li><strong>Procesador:</strong> AMD Ryzen 5 3600 o Intel Core i7-8700K</li><li><strong>Memoria:</strong> 16 GB</li><li><strong>Gráficos:</strong> AMD Radeon RX 5700 (8 GB) o NVIDIA GeForce RTX 3060 (8 GB)</li><li><strong>DirectX:</strong> Versión 12</li><li><strong>Almacenamiento:</strong> 90 GB de espacio disponible (SSD obligatorio)</li>
                     </ul>
-                    <p class="fs-5 mb-3">RECOMENDADOS:</p>
+                    <p class="fs-5 mb-3 text-danger fw-bold">RECOMENDADOS:</p>
                     <ul class="lista-cuadrada lista-requisitos ms-3 mb-4">
                         <li><strong>SO:</strong> Windows 10 / 11 (64 bits)</li><li><strong>Procesador:</strong> AMD Ryzen 5 5600X o Intel Core i5-11600K</li><li><strong>Memoria:</strong> 16 GB</li><li><strong>Gráficos:</strong> AMD Radeon RX 6800 XT (16 GB) o NVIDIA GeForce RTX 3080 (10 GB)</li><li><strong>DirectX:</strong> Versión 12</li><li><strong>Almacenamiento:</strong> 90 GB de espacio disponible (SSD NVMe recomendado)</li>
                     </ul>
                 </div>
 
                 <div class="text-center"><h3 class="seccion-titulo">INSTRUCCIONES</h3></div>
-                <ol class="lista-instrucciones ms-3 mb-5"><li>Descarga todas las partes del juego y descomprímelas con WinRAR o 7-Zip.</li>
+                <ol class="lista-instrucciones ms-3 mb-5 text-white"><li>Descarga todas las partes del juego y descomprímelas con WinRAR o 7-Zip.</li>
 <li>Monta o extrae la imagen ISO.</li>
 <li>Ejecuta el archivo Setup.exe e instala el juego.</li>
 <li>Disfruta del juego.</li></ol>
 
                 
                 
-
                 
         <div class="text-center mb-4">
-            <h3 class="seccion-titulo" style="font-size: 1.5rem; border-bottom: 2px solid #ff5722; display: inline-block; padding-bottom: 5px;">ENLACES DE DESCARGA</h3>
+            <h3 class="seccion-titulo" style="font-size: 1.5rem;">ENLACES DE DESCARGA</h3>
         </div>
-        <div class="p-4 bg-light border rounded-1 d-flex flex-column align-items-center">
+        <div class="p-4 border rounded-1 d-flex flex-column align-items-center" style="background-color: #111622 !important; border-color: #00f0ff !important; box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);">
             
         <div class="mb-4 text-start w-100">
-            <h6 class="fw-bold mb-2 text-dark text-center"><i class="fa-solid fa-gamepad me-2"></i>JUEGO BASE</h6>
+            <h6 class="fw-bold mb-2 text-white text-center"><i class="fa-solid fa-gamepad me-2 text-nexus"></i>JUEGO BASE</h6>
             <div class="text-center">
-                <a href="https://shrinkme.click/fOmi" target="_blank" class="btn btn-drive fw-bold px-4 py-3 shadow-sm w-100" style="max-width: 350px; border-radius: 4px;">
+                <a href="https://shrinkme.click/fOmi" target="_blank" class="btn btn-drive fw-bold px-4 py-3 shadow-sm w-100 btn-descargar-neon" style="max-width: 350px;">
                     <i class="fa-brands fa-google-drive me-2"></i> VER ENLACE DRIVE
                 </a>
             </div>
@@ -165,7 +181,7 @@
         </div>
 
             </div>
-            <div class="col-lg-3 mt-4 mt-lg-0"><div class="bg-dark text-white text-center p-4 rounded-1 h-100 d-flex flex-column justify-content-center align-items-center"><p class="text-uppercase fw-bold text-muted mb-2">Espacio Publicitario</p><h4 class="fw-bold">BANNER AQUI</h4></div></div>
+            <div class="col-lg-3 mt-4 mt-lg-0"><div class="bg-dark text-white text-center p-4 rounded-1 h-100 d-flex flex-column justify-content-center align-items-center" style="border: 1px solid #00f0ff; box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);"><p class="text-uppercase fw-bold text-muted mb-2">Espacio Publicitario</p><h4 class="fw-bold">BANNER AQUI</h4></div></div>
         </div>
     </div>
 
@@ -173,12 +189,9 @@
         <div class="container py-4">
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <h5 class="fw-bold mb-2 text-uppercase fs-6">
-                        <i class="fa-solid fa-gamepad text-warning me-2"></i>NEXUSGAMES
-                    </h5>
+                    <h5 class="fw-bold mb-2 text-uppercase fs-6"><i class="fa-solid fa-gamepad text-warning me-2"></i>NEXUSGAMES</h5>
                     <p class="text-light opacity-75 small mb-0">Tu directorio definitivo de videojuegos. Las mejores descargas por uTorrent, actualizaciones constantes y una comunidad en crecimiento.</p>
                 </div>
-                
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold mb-2 text-uppercase fs-6">Enlaces Útiles</h5>
                     <ul class="list-unstyled text-light opacity-75 small mb-0">
@@ -188,7 +201,6 @@
                         <li><a href="../ayuda.html" class="text-decoration-none text-light link-hover">DMCA / Reclamaciones</a></li>
                     </ul>
                 </div>
-                
                 <div class="col-md-4 mb-3">
                     <h5 class="fw-bold mb-2 text-uppercase fs-6">Únete a la comunidad</h5>
                     <div class="d-flex gap-3 mt-2">
