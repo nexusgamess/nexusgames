@@ -8,6 +8,93 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="juegos/imagenes/IDENTIDAD.png">
+    
+    <style>
+        /* =========================================
+           1. MENÚS DESPLEGABLES AL PASAR EL MOUSE (HOVER)
+        ========================================= */
+        @media all and (min-width: 992px) {
+            .navbar .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
+                animation: aparecerMenu 0.2s ease-in-out;
+            }
+        }
+        @keyframes aparecerMenu {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =========================================
+           2. ESTÉTICA DEL BOTÓN FILTRAR NEÓN Y MODAL
+        ========================================= */
+        .btn-filtrar-neon {
+            background-color: transparent !important;
+            border: 1px solid #00f0ff !important;
+            color: #00f0ff !important;
+            transition: all 0.3s ease;
+        }
+        .btn-filtrar-neon:hover {
+            background-color: #00f0ff !important;
+            color: #0b0e14 !important;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+        }
+
+        /* =========================================
+           3. ESTÉTICA DE LA BARRA DE BÚSQUEDA Y LUPA (CORREGIDA)
+        ========================================= */
+        #buscadorPrincipal, .buscador-neon {
+            background-color: #0b0e14 !important;
+            border: 1px solid #00f0ff !important;
+            color: #00f0ff !important;
+        }
+        
+        #buscadorPrincipal::placeholder, .buscador-neon::placeholder {
+            color: #00f0ff !important;
+            opacity: 0.6 !important;
+        }
+        
+        #buscadorPrincipal:focus, .buscador-neon:focus {
+            background-color: #111622 !important;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5) !important;
+            color: #fff !important;
+            outline: none;
+        }
+        
+        .btn-lupa-neon {
+            background-color: transparent !important;
+            border: 1px solid #00f0ff !important;
+            color: #00f0ff !important;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-lupa-neon:hover {
+            background-color: #00f0ff !important;
+            color: #0b0e14 !important;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+        }
+
+        /* Tema Cyberpunk para la ventana de Filtros */
+        .modal-cyber {
+            background-color: #0b0e14;
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        .modal-cyber .modal-header, .modal-cyber .modal-footer {
+            border-color: #1a2235;
+        }
+        .form-select-cyber {
+            background-color: #111622;
+            border: 1px solid #1a2235;
+            color: #b0b5c0;
+        }
+        .form-select-cyber:focus {
+            background-color: #111622;
+            border-color: #00f0ff;
+            color: #fff;
+            box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+        }
+    </style>
 </head>
 <body>
 
@@ -72,9 +159,13 @@
                     <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-youtube"></i></a>
                     <a href="https://discord.gg/K5xKACqWQ" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-discord"></i></a>
                     <div class="d-flex align-items-center m-0 ms-auto position-relative">
-                        <input class="form-control me-2 border-0 rounded-pill px-3 shadow-sm" type="search" id="buscadorPrincipal" placeholder="Buscar juego..." aria-label="Search" onkeyup="filtrarEnTiempoReal()" onblur="verificarSalidaBuscador()">
-                        <button class="btn btn-dark rounded-pill px-3 shadow-sm" type="button">
+                        <input class="form-control me-2 border-0 rounded-pill px-3 shadow-sm buscador-neon" type="search" id="buscadorPrincipal" placeholder="Buscar juego..." aria-label="Search" onkeyup="filtrarEnTiempoReal()" onblur="verificarSalidaBuscador()">
+                        <button class="btn rounded-pill px-3 shadow-sm btn-lupa-neon" type="button">
                             <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                        
+                        <button class="btn btn-dark rounded-pill px-3 shadow-sm ms-2 d-flex align-items-center fw-bold btn-filtrar-neon" type="button" data-bs-toggle="modal" data-bs-target="#modalFiltros" style="font-size: 0.85rem;" title="Filtros Avanzados">
+                            <i class="fa-solid fa-sliders me-2"></i> FILTRAR
                         </button>
                     </div>
                 </div>
@@ -82,11 +173,94 @@
         </div>
     </nav>
 
+    <!-- VENTANA EMERGENTE (MODAL) DE FILTROS -->
+    <div class="modal fade" id="modalFiltros" tabindex="-1" aria-labelledby="modalFiltrosLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-cyber text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="modalFiltrosLabel" style="color: #00f0ff;">
+                        <i class="fa-solid fa-sliders me-2"></i> Filtros Avanzados
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <label class="fw-bold small mb-2 text-uppercase" style="color: #b0b5c0;">Categoría del Juego</label>
+                        <select id="filtroSelectCategoria" class="form-select form-select-cyber">
+                            <option value="">Todas las categorías</option>
+                            <option value="2d">2D</option>
+                            <option value="accion">Acción</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="anime">Anime</option>
+                            <option value="carreras">Carreras</option>
+                            <option value="construccion">Construcción</option>
+                            <option value="deportes">Deportes</option>
+                            <option value="estrategia">Estrategia</option>
+                            <option value="shooter">Shooter</option>
+                            <option value="guerra">Guerra</option>
+                            <option value="lucha">Lucha</option>
+                            <option value="rol">Rol</option>
+                            <option value="simulacion">Simulación</option>
+                            <option value="supervivencia">Supervivencia</option>
+                            <option value="terror">Terror</option>
+                            <option value="zombies">Zombies</option>
+                            <option value="mundo-abierto">Mundo Abierto</option>
+                            <option value="multiplayer-online">Multiplayer Online</option>
+                            <option value="pantalla-dividida">Pantalla Dividida</option>
+                            <option value="pixelados">Pixelados</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="fw-bold small mb-2 text-uppercase" style="color: #b0b5c0;">Requisitos del Sistema</label>
+                        <select id="filtroSelectRequisitos" class="form-select form-select-cyber">
+                            <option value="">Cualquier requisito</option>
+                            <option value="bajos">Bajos Requisitos</option>
+                            <option value="medios">Medios Requisitos</option>
+                            <option value="altos">Altos Requisitos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn fw-bold" style="background-color: #00f0ff; color: #0b0e14;" onclick="aplicarFiltrosAvanzados()">
+                        <i class="fa-solid fa-check me-1"></i> Aplicar Filtros
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container mt-4 mb-5">
         <div class="row">
             <div class="col-lg-9">
         <h4 id="titulo-seccion" class="fw-bold text-uppercase mb-4 text-secondary"><i class="fa-solid fa-calendar-days me-2 text-danger"></i>Últimas Publicaciones</h4>                
                 <div class="row g-4">
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="simulacion" data-requisitos="bajos">
+        <a href="juegos/retro-rewind-video-store-simulator-pc-espaol-v2308.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/1788212668840-RETRO-REWIND-Juego-para-PC.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">RETRO REWIND VIDEO STORE SIMULATOR PC ESPAÑOL v2308</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Simulación, Bajos Requisitos</p>
+            <div class="text-center mt-2 mb-1">
+                <button class="btn btn-descargar-neon w-100">DESCARGAR AHORA <i class="fa-solid fa-download ms-1"></i></button>
+            </div>
+        </a>
+    </div>
+<div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion,aventura,mundo-abierto" data-requisitos="altos">
+        <a href="juegos/007-first-light-pc-espaol--update-111.html" class="text-decoration-none text-dark game-post">
+            <div class="position-relative">
+                <img src="juegos/imagenes/1788212327448-007-first-light-acceso-avanzado-pc-steam-cover-1.jpg" class="img-fluid rounded-1 w-100 portada-tarjeta" alt="Juego">
+                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">NUEVO</span>
+            </div>
+            <h6 class="mt-2 mb-1 fw-bold text-uppercase">007 FIRST LIGHT PC ESPAÑOL + Update 1.1.1</h6>
+            <p class="text-muted" style="font-size: 0.75rem;">Acción, Aventura, Mundo Abierto, Altos Requisitos</p>
+            <div class="text-center mt-2 mb-1">
+                <button class="btn btn-descargar-neon w-100">DESCARGAR AHORA <i class="fa-solid fa-download ms-1"></i></button>
+            </div>
+        </a>
+    </div>
 <div class="col-md-4 col-sm-6 juego-tarjeta" data-categoria="accion,aventura,shooter,mundo-abierto" data-requisitos="altos">
         <a href="juegos/avatar-frontiers-of-pandora-complete-edition-pc-espaol.html" class="text-decoration-none text-dark game-post">
             <div class="position-relative">
@@ -490,188 +664,6 @@
             </div>
         </a>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
                     </div>
             </div>
 
@@ -729,18 +721,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     
-<script>
+    <script>
         const urlParams = new URLSearchParams(window.location.search);
         const catFiltrar = urlParams.get('cat');
         const reqFiltrar = urlParams.get('req');
-        const busquedaUrl = urlParams.get('buscar'); // Recuperamos la búsqueda por si vienen desde otra página
+        const busquedaUrl = urlParams.get('buscar'); 
         let paginaActual = parseInt(urlParams.get('pagina')) || 1; 
         const juegosPorPagina = 6; 
         let busquedaActiva = false;
 
         const normalizarTexto = (texto) => texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
-        // Diccionarios Globales
         const iconosCategoria = {
             "2d": { icono: "fa-gamepad", texto: "Juegos 2D", color: "text-muted" },
             "accion": { icono: "fa-crosshairs", texto: "Acción", color: "text-danger" },
@@ -770,7 +761,6 @@
             "altos": { icono: "fa-battery-full", texto: "Altos Requisitos", color: "text-danger" }
         };
 
-        // Función Núcleo para renderizar la paginación base de la URL
         function renderizarPaginaBase() {
             const tarjetas = document.querySelectorAll(".juego-tarjeta");
             const contenedorPaginacion = document.getElementById("paginacion");
@@ -792,7 +782,6 @@
                 }
             });
 
-            // Si no hay juegos en esta categoría/filtro
             if (tarjetasFiltradas.length === 0) {
                 if (mensajeVacio) mensajeVacio.style.display = "block";
                 if (contenedorPaginacion) contenedorPaginacion.innerHTML = "";
@@ -821,7 +810,6 @@
             const inputBuscador = document.getElementById('buscadorPrincipal');
             const contenedorJuegos = document.querySelector(".row.g-4");
 
-            // --- INYECTAR MENSAJE DE "NO RESULTADOS" OCULTO EN EL HTML ---
             if (contenedorJuegos && !document.getElementById("mensaje-sin-resultados")) {
                 const msjDiv = document.createElement("div");
                 msjDiv.id = "mensaje-sin-resultados";
@@ -835,7 +823,6 @@
                 contenedorJuegos.appendChild(msjDiv);
             }
 
-            // 1. REGLA GLOBAL: ETIQUETA NUEVO
             tarjetas.forEach((tarjeta, indexGlobal) => {
                 if (indexGlobal >= 6) {
                     const etiquetaNuevo = tarjeta.querySelector('.badge.bg-warning');
@@ -845,12 +832,20 @@
                 }
             });
 
-            // 2. CONFIGURAR INICIO (¿Viene de una búsqueda desde otra página?)
+            // Preseleccionar los filtros en la ventana modal
+            if (catFiltrar) {
+                const selectCat = document.getElementById('filtroSelectCategoria');
+                if (selectCat) selectCat.value = catFiltrar;
+            }
+            if (reqFiltrar) {
+                const selectReq = document.getElementById('filtroSelectRequisitos');
+                if (selectReq) selectReq.value = reqFiltrar;
+            }
+
             if (busquedaUrl && inputBuscador) {
                 inputBuscador.value = busquedaUrl;
-                filtrarEnTiempoReal(); // Ejecutamos la búsqueda instantánea
+                filtrarEnTiempoReal(); 
             } else {
-                // Títulos normales
                 if (tituloSeccion) {
                     if (catFiltrar && iconosCategoria[catFiltrar]) {
                         const cat = iconosCategoria[catFiltrar];
@@ -864,7 +859,20 @@
             }
         });
 
-        // --- FUNCIÓN EN TIEMPO REAL AL ESCRIBIR ---
+        // --- FUNCIÓN QUE EJECUTA EL BOTÓN "APLICAR FILTROS" ---
+        function aplicarFiltrosAvanzados() {
+            const cat = document.getElementById('filtroSelectCategoria').value;
+            const req = document.getElementById('filtroSelectRequisitos').value;
+            const busquedaActual = document.getElementById('buscadorPrincipal').value.trim();
+            const params = new URLSearchParams();
+            
+            if (cat) params.set('cat', cat);
+            if (req) params.set('req', req);
+            if (busquedaActual) params.set('buscar', busquedaActual);
+
+            window.location.href = 'index.html' + (params.toString() ? '?' + params.toString() : '');
+        }
+
         function filtrarEnTiempoReal() {
             const contenedorPaginacion = document.getElementById("paginacion");
             const tituloSeccion = document.getElementById("titulo-seccion");
@@ -873,7 +881,6 @@
             const mensajeVacio = document.getElementById("mensaje-sin-resultados");
             const texto = normalizarTexto(inputBuscador.value);
 
-            // Si el usuario vacía la caja, restauramos la vista original limpia
             if (texto === "") {
                 if (tituloSeccion) {
                     if (catFiltrar && iconosCategoria[catFiltrar]) {
@@ -896,7 +903,6 @@
                 tituloSeccion.innerHTML = `<i class="fa-solid fa-magnifying-glass me-2 text-info"></i>Buscando: "${inputBuscador.value}"`;
             }
 
-            // Desactivamos la paginación temporalmente
             if (contenedorPaginacion) contenedorPaginacion.innerHTML = "";
 
             let coincidencias = 0;
@@ -919,7 +925,6 @@
                 }
             });
 
-            // Mostramos u ocultamos el mensaje dependiendo de si hubo resultados
             if (mensajeVacio) {
                 if (coincidencias === 0) {
                     mensajeVacio.style.display = "block";
@@ -929,7 +934,6 @@
             }
         }
 
-        // --- FUNCIÓN AL SALIR DE LA CAJA ---
         function verificarSalidaBuscador() {
             const texto = document.getElementById('buscadorPrincipal').value.trim();
             if (texto === "" && busquedaActiva) {
@@ -941,7 +945,34 @@
             }
         }
 
-        // --- CONSTRUCCIÓN DE BOTONES DE PAGINACIÓN ---
+        function calcularNumeros(current, total) {
+            if (total <= 1) return [1];
+            const range = [];
+            const rangeWithDots = [];
+            let l;
+
+            range.push(1);
+            for (let i = current - 1; i <= current + 1; i++) {
+                if (i < total && i > 1) {
+                    range.push(i);
+                }
+            }
+            range.push(total);
+
+            for (let i of range) {
+                if (l) {
+                    if (i - l === 2) {
+                        rangeWithDots.push(l + 1);
+                    } else if (i - l !== 1) {
+                        rangeWithDots.push('...');
+                    }
+                }
+                rangeWithDots.push(i);
+                l = i;
+            }
+            return rangeWithDots;
+        }
+
         function generarPaginacion(totalPaginas, actual) {
             const paginacionUl = document.getElementById("paginacion");
             if (!paginacionUl) return;
@@ -960,17 +991,24 @@
             liAnterior.innerHTML = `<a class="page-link text-danger" href="${actual === 1 ? '#' : crearUrlPagina(actual - 1)}">Anterior</a>`;
             paginacionUl.appendChild(liAnterior);
 
-            for (let i = 1; i <= totalPaginas; i++) {
+            const paginas = calcularNumeros(actual, totalPaginas);
+
+            paginas.forEach(p => {
                 const liNum = document.createElement("li");
-                liNum.className = `page-item ${actual === i ? 'active' : ''}`;
                 
-                if(actual === i) {
-                    liNum.innerHTML = `<span class="page-link bg-danger border-danger text-white">${i}</span>`;
+                if (p === '...') {
+                    liNum.className = "page-item disabled";
+                    liNum.innerHTML = `<span class="page-link text-dark bg-transparent border-0">...</span>`;
                 } else {
-                    liNum.innerHTML = `<a class="page-link text-dark" href="${crearUrlPagina(i)}">${i}</a>`;
+                    liNum.className = `page-item ${actual === p ? 'active' : ''}`;
+                    if(actual === p) {
+                        liNum.innerHTML = `<span class="page-link bg-danger border-danger text-white">${p}</span>`;
+                    } else {
+                        liNum.innerHTML = `<a class="page-link text-dark" href="${crearUrlPagina(p)}">${p}</a>`;
+                    }
                 }
                 paginacionUl.appendChild(liNum);
-            }
+            });
 
             const liSiguiente = document.createElement("li");
             liSiguiente.className = `page-item ${actual === totalPaginas ? 'disabled' : ''}`;
