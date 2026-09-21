@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S.T.AL.K.E.R 2 HEART OF CHERNOBYL v2.0.6 | NexusGames</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" href="imagenes/IDENTIDAD.png">
+    <style>
+        body {
+            background-color: #0b0e14 !important;
+            color: #e0e0e0 !important;
+            background-image: radial-gradient(circle at 50% 0%, #1a2235 0%, #0b0e14 60%);
+            background-attachment: fixed;
+        }
+        .seccion-titulo { color: #ff003c; text-transform: uppercase; border-bottom: 2px solid #ff003c; display: inline-block; padding-bottom: 5px; margin-bottom: 25px; font-weight: bold; }
+        .lista-cuadrada { list-style-type: square; }
+        .lista-cuadrada li, .lista-requisitos li { margin-bottom: 10px; }
+        .lista-instrucciones li { margin-bottom: 12px; font-size: 1.1rem; }
+        
+        .card-cyber {
+            background-color: #111622 !important;
+            border: 1px solid #00f0ff !important;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+            border-radius: 8px;
+        }
+        .portada-juego {
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            width: 100%;
+            max-width: 750px;
+            height: 420px;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 6px;
+        }
+
+        @media all and (min-width: 992px) {
+            .navbar .nav-item.dropdown:hover .dropdown-menu {
+                display: block;
+                margin-top: 0;
+                animation: aparecerMenu 0.2s ease-in-out;
+            }
+        }
+        @keyframes aparecerMenu {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-filtrar-neon {
+            background-color: transparent !important;
+            border: 1px solid #00f0ff !important;
+            color: #00f0ff !important;
+            transition: all 0.3s ease;
+        }
+        .btn-filtrar-neon:hover {
+            background-color: #00f0ff !important;
+            color: #0b0e14 !important;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+        }
+        
+        /* BUSCADOR Y LUPA NEÓN - CORREGIDO */
+        #buscadorPrincipal, .buscador-neon {
+            background-color: #0b0e14 !important;
+            border: 1px solid #00f0ff !important;
+            color: #00f0ff !important;
+        }
+        
+        #buscadorPrincipal::placeholder, .buscador-neon::placeholder {
+            color: #00f0ff !important;
+            opacity: 0.6 !important;
+        }
+        
+        #buscadorPrincipal:focus, .buscador-neon:focus {
+            background-color: #111622 !important;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.5) !important;
+            color: #fff !important;
+            outline: none;
+        }
+        
+        .btn-lupa-neon {
+            background-color: transparent !important;
+            border: 1px solid #00f0ff !important;
+            color: #00f0ff !important;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-lupa-neon:hover {
+            background-color: #00f0ff !important;
+            color: #0b0e14 !important;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+        }
+
+        .modal-cyber {
+            background-color: #0b0e14;
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        .modal-cyber .modal-header, .modal-cyber .modal-footer {
+            border-color: #1a2235;
+        }
+        .form-select-cyber {
+            background-color: #111622;
+            border: 1px solid #1a2235;
+            color: #b0b5c0;
+        }
+        .form-select-cyber:focus {
+            background-color: #111622;
+            border-color: #00f0ff;
+            color: #fff;
+            box-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg custom-navbar py-2">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold fs-4 d-flex align-items-center" href="../index.html">
+                <img src="imagenes/IDENTIDAD.png" alt="Logo" style="height: 35px;" class="me-2">
+                NEXUSGAMES
+            </a>
+            <button class="navbar-toggler border-white text-white" type="button" data-bs-toggle="collapse" data-bs-target="#menuNavegacion">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="menuNavegacion">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-uppercase fw-semibold" style="font-size: 0.85rem;">
+                    <li class="nav-item"><a class="nav-link text-white px-3" href="../index.html">Inicio</a></li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorías
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" style="min-width: 250px; max-height: 400px; overflow-y: auto;">
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=2d"><i class="fa-solid fa-gamepad me-2 text-muted"></i> 2D</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=accion"><i class="fa-solid fa-crosshairs me-2 text-danger"></i> Acción</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=aventura"><i class="fa-solid fa-map-location-dot me-2 text-warning"></i> Aventura</a></li> 
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=anime"><i class="fa-solid fa-khanda me-2 text-warning"></i> Anime</a></li>                           
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=carreras"><i class="fa-solid fa-car-side me-2 text-primary"></i> Carreras</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=construccion"><i class="fa-solid fa-hammer me-2 text-info"></i> Construcción</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=deportes"><i class="fa-solid fa-futbol me-2 text-success"></i> Deportes</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=estrategia"><i class="fa-solid fa-chess-knight me-2 text-success"></i> Estrategia</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=shooter"><i class="fa-solid fa-gun me-2 text-secondary"></i> Shooter</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=guerra"><i class="fa-solid fa-jet-fighter me-2 text-danger"></i> Guerra</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=lucha"><i class="fa-solid fa-hand-fist me-2 text-warning"></i> Lucha</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=rol"><i class="fa-solid fa-wand-magic-sparkles me-2 text-info"></i> Rol</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=simulacion"><i class="fa-solid fa-tractor me-2 text-light"></i> Simulación</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=supervivencia"><i class="fa-solid fa-mask-ventilator me-2 text-light"></i> Supervivencia</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=terror"><i class="fa-solid fa-ghost me-2 text-secondary"></i> Terror</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=zombies"><i class="fa-solid fa-biohazard me-2 text-success"></i> Zombies</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=mundo-abierto"><i class="fa-solid fa-earth-americas me-2 text-primary"></i> Mundo Abierto</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=multiplayer-online"><i class="fa-solid fa-globe me-2 text-warning"></i> Multiplayer Online</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=pantalla-dividida"><i class="fa-solid fa-users me-2 text-info"></i> Pantalla Dividida</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?cat=pixelados"><i class="fa-solid fa-border-all me-2 text-muted"></i> Pixelados</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item fw-bold text-center text-info" href="../index.html">VER TODO EL CATÁLOGO</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-white px-3 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Requisitos
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?req=bajos"><i class="fa-solid fa-battery-quarter me-2 text-success"></i> Bajos Requisitos</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?req=medios"><i class="fa-solid fa-battery-half me-2 text-warning"></i> Medios Requisitos</a></li>
+                            <li><a class="dropdown-item d-flex align-items-center" href="../index.html?req=altos"><i class="fa-solid fa-battery-full me-2 text-danger"></i> Altos Requisitos</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-white px-3" href="../ayuda.html">Ayuda</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center gap-3 ms-lg-3 mt-3 mt-lg-0">
+                    <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://discord.gg/Jpcbae8HKP" target="_blank" class="text-white fs-5 hover-rojo"><i class="fa-brands fa-discord"></i></a>
+                    <div class="d-flex align-items-center m-0 ms-auto position-relative">
+                        <form action="../index.html" method="GET" class="d-flex align-items-center m-0 w-100">
+                            <input class="form-control me-2 rounded-pill px-3 shadow-sm buscador-neon" type="search" name="buscar" placeholder="Buscar juego..." aria-label="Search" required>
+                            <button class="btn rounded-pill px-3 shadow-sm btn-lupa-neon" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
+                        <button class="btn btn-dark rounded-pill px-3 shadow-sm ms-2 d-flex align-items-center fw-bold btn-filtrar-neon" type="button" data-bs-toggle="modal" data-bs-target="#modalFiltros" style="font-size: 0.85rem;" title="Filtros Avanzados">
+                            <i class="fa-solid fa-sliders me-2"></i> FILTRAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- VENTANA EMERGENTE (MODAL) DE FILTROS EN JUEGO -->
+    <div class="modal fade" id="modalFiltros" tabindex="-1" aria-labelledby="modalFiltrosLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-cyber text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="modalFiltrosLabel" style="color: #00f0ff;">
+                        <i class="fa-solid fa-sliders me-2"></i> Filtros Avanzados
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <label class="fw-bold small mb-2 text-uppercase" style="color: #b0b5c0;">Categoría del Juego</label>
+                        <select id="filtroSelectCategoria" class="form-select form-select-cyber">
+                            <option value="">Todas las categorías</option>
+                            <option value="2d">2D</option>
+                            <option value="accion">Acción</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="anime">Anime</option>
+                            <option value="carreras">Carreras</option>
+                            <option value="construccion">Construcción</option>
+                            <option value="deportes">Deportes</option>
+                            <option value="estrategia">Estrategia</option>
+                            <option value="shooter">Shooter</option>
+                            <option value="guerra">Guerra</option>
+                            <option value="lucha">Lucha</option>
+                            <option value="rol">Rol</option>
+                            <option value="simulacion">Simulación</option>
+                            <option value="supervivencia">Supervivencia</option>
+                            <option value="terror">Terror</option>
+                            <option value="zombies">Zombies</option>
+                            <option value="mundo-abierto">Mundo Abierto</option>
+                            <option value="multiplayer-online">Multiplayer Online</option>
+                            <option value="pantalla-dividida">Pantalla Dividida</option>
+                            <option value="pixelados">Pixelados</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="fw-bold small mb-2 text-uppercase" style="color: #b0b5c0;">Requisitos del Sistema</label>
+                        <select id="filtroSelectRequisitos" class="form-select form-select-cyber">
+                            <option value="">Cualquier requisito</option>
+                            <option value="bajos">Bajos Requisitos</option>
+                            <option value="medios">Medios Requisitos</option>
+                            <option value="altos">Altos Requisitos</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn fw-bold" style="background-color: #00f0ff; color: #0b0e14;" onclick="aplicarFiltrosAvanzados()">
+                        <i class="fa-solid fa-check me-1"></i> Buscar en Catálogo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4 mb-5">
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb" style="font-size: 0.85rem;">
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-muted">Inicio</a></li>
+                <li class="breadcrumb-item active fw-bold text-white" aria-current="page">S.T.AL.K.E.R 2 HEART OF CHERNOBYL v2.0.6</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-9 card-cyber p-4 border">
+                <h1 class="h3 fw-bold mb-4 text-uppercase text-center text-white">S.T.AL.K.E.R 2 HEART OF CHERNOBYL v2.0.6</h1>
+                <img src="imagenes/1789959626250-STA2LKER2HoCho2rnoby-PIVIGAMES.jpg" class="mb-4 shadow-sm portada-juego" alt="Portada del Juego">
+
+                <div class="px-2 mb-5"><p style="font-size: 1.05rem; line-height: 1.7; color: #b0b5c0;">S.T.A.L.K.E.R. 2: Heart of Chornobyl es un juego de acción, supervivencia y terror en primera persona, ambientado en la peligrosa Zona de Exclusión de Chornobyl. El jugador explora un enorme mundo abierto lleno de anomalías, mutantes, facciones y peligros ambientales mientras busca recursos y descubre los secretos de la Zona.</p></div>
+
+                <div class="text-center"><h3 class="seccion-titulo">Ficha Técnica</h3></div>
+                <ul class="lista-cuadrada fs-6 ms-3 mb-5 text-white">
+                    <li><strong>PLATAFORMA:</strong> PC</li>
+                    <li><strong>PESO TOTAL:</strong> 138 GB</li>
+                    <li><strong>FORMATO:</strong> ISO ELAMIGOS</li>
+                    <li><strong>FECHA DE ACTUALIZACIÓN:</strong> <span class="text-danger fw-bold">19/09/26</span></li>
+                    <li><strong>CATEGORÍAS:</strong> Shooter, Mundo Abierto</li>
+                    
+                    
+                </ul>
+
+                <div class="text-center"><h3 class="seccion-titulo">Gameplay Trailer</h3></div>
+                <div class="ratio ratio-16x9 mb-5 border border-secondary rounded shadow-sm"><iframe src="https://www.youtube.com/embed/cfmhfDvOyP0" allowfullscreen></iframe></div>
+
+                <div class="text-center"><h3 class="seccion-titulo">Requisitos del Sistema</h3></div>
+                <div class="mb-5 text-white">
+                    <p class="fs-5 mb-3 text-danger fw-bold">MÍNIMOS:</p>
+                    <ul class="lista-cuadrada lista-requisitos ms-3 mb-4">
+                        <li><strong>SO:</strong> Windows 10 x64 / Windows 11 x64</li><li><strong>Procesador:</strong> Intel Core i7-7700K / AMD Ryzen 5 1600X</li><li><strong>Memoria:</strong> 16 GB de RAM</li><li><strong>Gráficos:</strong> Nvidia GeForce GTX 1060 6GB / AMD Radeon RX 580 8GB / Intel Arc A750</li><li><strong>DirectX:</strong> Versión 12</li><li><strong>Almacenamiento:</strong> 160 GB de espacio disponible</li>
+                    </ul>
+                    <p class="fs-5 mb-3 text-danger fw-bold">RECOMENDADOS:</p>
+                    <ul class="lista-cuadrada lista-requisitos ms-3 mb-4">
+                        <li><strong>SO:</strong> Windows 10 x64 / Windows 11 x64</li><li><strong>Procesador:</strong> Intel Core i7-11700 / AMD Ryzen 7 5800X</li><li><strong>Memoria:</strong> 32 GB de RAM</li><li><strong>Gráficos:</strong> Nvidia GeForce RTX 3070 Ti / Nvidia GeForce RTX 4070 / AMD Radeon RX 6800 XT</li><li><strong>DirectX:</strong> Versión 12</li><li><strong>Almacenamiento:</strong> 160 GB de espacio disponible</li>
+                    </ul>
+                </div>
+
+                <div class="text-center"><h3 class="seccion-titulo">INSTRUCCIONES</h3></div>
+                <ol class="lista-instrucciones ms-3 mb-5 text-white"><li>Descargar el juego</li>
+<li>Descomprimir CARPETA RAR</li>
+<li>Montar el Archivo ISO con «Daemon Tools o similar»</li>
+<li>Ejecutar el SETUP.EXE e instalar</li>
+<li>Ejecutar el juego como Administrador</li>
+<li>Jugar</li></ol>
+
+                
+        <div class="text-center mt-5 text-uppercase"><h3 class="seccion-titulo">UPDATES</h3></div>
+        <ol class="lista-instrucciones ms-3 mb-5 text-white"><li>Descargar y descomprimir el archivo update2.0.6</li>
+<li>Ejecutar el SETUP.EXE e instalar en su juego base</li>
+<li>Ejecutar el juego como Administrador</li>
+<li>Jugar</li></ol>
+                
+                
+                
+        <div class="text-center mb-4">
+            <h3 class="seccion-titulo" style="font-size: 1.5rem;">ENLACES DE DESCARGA</h3>
+        </div>
+        <div class="p-4 border rounded-1 d-flex flex-column align-items-center" style="background-color: #111622 !important; border-color: #00f0ff !important; box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);">
+            
+        <div class="mb-4 text-start w-100">
+            <h6 class="fw-bold mb-2 text-white text-center"><i class="fa-solid fa-gamepad me-2 text-nexus"></i>JUEGO BASE</h6>
+            <div class="text-center">
+                <a href="https://shrinkme.click/ydwW55" target="_blank" class="btn btn-torrent fw-bold px-4 py-3 shadow-sm w-100 btn-descargar-neon" style="max-width: 350px;">
+                    <i class="fa-solid fa-magnet me-2"></i> VER ENLACE TORRENT
+                </a>
+            </div>
+        </div>
+            
+        <div class="mb-4 text-start w-100">
+            <h6 class="fw-bold mb-2 text-white text-center"><i class="fa-solid fa-gamepad me-2 text-nexus"></i>UPDATES</h6>
+            <div class="text-center">
+                <a href="https://mega.nz/file/J34y2ZCK#SZoA4bZg7hvmK38oqUYM7CnJP_ENVlFfCZMh9scCjso" target="_blank" class="btn btn-mega fw-bold px-4 py-3 shadow-sm w-100 btn-descargar-neon" style="max-width: 350px;">
+                    <i class="fa-solid fa-cloud me-2"></i> VER ENLACE MEGA
+                </a>
+            </div>
+        </div>
+            
+            
+        </div>
+
+            </div>
+            <div class="col-lg-3 mt-4 mt-lg-0"><div class="bg-dark text-white text-center p-4 rounded-1 h-100 d-flex flex-column justify-content-center align-items-center" style="border: 1px solid #00f0ff; box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);"><p class="text-uppercase fw-bold text-muted mb-2">Espacio Publicitario</p><h4 class="fw-bold">BANNER AQUI</h4></div></div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 border-top border-danger border-3 mi-footer">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold mb-2 text-uppercase fs-6"><i class="fa-solid fa-gamepad text-warning me-2"></i>NEXUSGAMES</h5>
+                    <p class="text-light opacity-75 small mb-0">Tu directorio definitivo de videojuegos. Las mejores descargas por uTorrent, actualizaciones constantes y una comunidad en crecimiento.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold mb-2 text-uppercase fs-6">Enlaces Útiles</h5>
+                    <ul class="list-unstyled text-light opacity-75 small mb-0">
+                        <li class="mb-1"><a href="../index.html" class="text-decoration-none text-light link-hover">Inicio</a></li>
+                        <li class="mb-1"><a href="https://discord.gg/Jpcbae8HKP" target="_blank" class="text-decoration-none text-light link-hover">Pedir un juego</a></li>
+                        <li class="mb-1"><a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-decoration-none text-light link-hover">Cómo descargar (Tutorial)</a></li>
+                        <li><a href="../ayuda.html" class="text-decoration-none text-light link-hover">DMCA / Reclamaciones</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5 class="fw-bold mb-2 text-uppercase fs-6">Únete a la comunidad</h5>
+                    <div class="d-flex gap-3 mt-2">
+                        <a href="https://www.youtube.com/@nexus-games-everyone" target="_blank" class="text-white fs-5"><i class="fa-brands fa-youtube hover-rojo"></i></a>
+                        <a href="https://discord.gg/Jpcbae8HKP" target="_blank" class="text-white fs-5"><i class="fa-brands fa-discord hover-rojo"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary mt-1 mb-2">
+            <div class="text-center text-light opacity-75" style="font-size: 0.75rem;">&copy; 2026 NexusGames. Todos los derechos reservados.</div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function aplicarFiltrosAvanzados() {
+            const cat = document.getElementById('filtroSelectCategoria').value;
+            const req = document.getElementById('filtroSelectRequisitos').value;
+            const searchInput = document.querySelector('input[name="buscar"]');
+            const busquedaActual = searchInput ? searchInput.value.trim() : '';
+            
+            const params = new URLSearchParams();
+            if (cat) params.set('cat', cat);
+            if (req) params.set('req', req);
+            if (busquedaActual) params.set('buscar', busquedaActual);
+
+            window.location.href = '../index.html' + (params.toString() ? '?' + params.toString() : '');
+        }
+    </script>
+</body>
+</html>
